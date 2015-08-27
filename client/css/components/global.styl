@@ -1,0 +1,604 @@
+//Font settings
+font-family-arial = 'arial'
+font-family-arial-narrow = 'arial narrow'
+font-family-tit = 'Titillium Web', sans-serif, 'Time New Roman'
+//font-family-tit = 'arial'
+font-size = 14px
+font-size-xsmall = 10px
+font-size-small = 12px
+font-size-big = 14px
+font-size-mbig = 16px
+font-size-xbig = 18px
+font-size-xxbig = 20px
+font-size-xxxbig = 22px
+
+//Grey Colors
+grey-darker = #5E5E5E          //grey-dk-bgcolor
+grey-dark = #8C8C8C            //grey-color/grey-bgcolor
+grey = #BCBCBC                 //grey-md-color
+grey-light = #DBDBDB           //grey-lt-color/grey-lt-bgcolor
+grey-lighter = #F2F2F2         //light-bgcolor
+
+//brand colors
+brand-orange = #f05C22                  //orange-color/orange-bgcolor
+brand-orange-dark = #C34627             //orange-dk-bgcolor
+brand-black = #404041                   //black-color/black-bgcolor
+brand-black-o5 = lighten(brand-black,50%)   //black-bgcolor-op5
+brand-black-o3 = lighten(brand-black,30%)   
+brand-white = #FFFFFF                   //white-color/white-bgcolor
+
+//Scaffolding
+body-color = #FFFFFF
+text-color = #404041
+
+
+body
+  width: 100%
+
+.container 
+  max-width: none !important
+  width: 1140px !important
+
+._hoopmap
+._login
+._
+  footer 
+    margin-top: 0
+
+footer
+  height:40px
+  background-color: brand-black
+  text-align: center
+  margin-top: 80px
+  a
+    &:hover 
+      color: #FFF 
+      cursor: pointer
+  p
+  a  
+    color: #FFF
+    display: inline-block 
+    margin-top: 12px 
+
+
+border-radius()
+  border-radius: arguments
+
+body
+  font: font-size font-family-arial
+  background-color: body-color
+  color: text-color
+
+h1
+  font-family:font-family-tit
+  font-size: font-size-xxxbig
+h2 
+  font-size: font-size-xxbig
+h3 
+  font-size: font-size-xbig
+h4 
+  font-size: font-size-mbig
+h5
+  font-size: font-size-big
+h6  
+  font-style: font-size-small
+
+h1.grey
+h2.grey 
+h3.grey 
+h4.grey 
+h5.grey 
+h6.grey 
+  color: grey
+.grey 
+  color: grey-dark
+
+h1.ct
+h2.ct 
+h3.ct 
+h4.ct 
+h5.ct 
+h6.ct  
+  text-align: center
+
+.mb0
+  margin-bottom: 0
+.mt0
+  margin-top: 0
+.mt5 
+  margin-top: 5px
+.mb10 
+  margin-bottom: 10px !important
+.mb20 
+  margin-bottom: 20px 
+.mt10 
+  margin-top: 10px !important
+.mt20 
+  margin-top: 20px
+.mr5
+  margin-right: 5px
+.ml5
+  margin-left: 5px
+.mr10 
+  margin-right: 10px 
+.mr20 
+  margin-right: 20px
+.mr30
+  margin-right: 30px
+.ml10 
+  margin-left: 10px
+.ml15 
+  margin-left: 15px 
+.ml20 
+  margin-left: 20px
+.pb0
+  padding-bottom: 0
+.pt0
+  padding-top: 0
+.pt5 
+  padding-top: 5px
+.pb10 
+  padding-bottom: 10px 
+.pb20 
+  padding-bottom: 20px 
+.pt10 
+  padding-top: 10px 
+.pt20 
+  padding-top: 20px
+.pr5
+  padding-right: 5px
+.pr10 
+  padding-right: 10px 
+.pr20 
+  padding-right: 20px
+.pl0
+  padding-left: 0 
+.pl10 
+  padding-left: 10px
+.pl15 
+  padding-left: 15px 
+.pl20 
+  padding-left: 20px  
+
+h1
+h2
+h3
+h4
+h5
+h6
+  font-family:font-family-tit
+
+hr
+  margin-top: 10px
+  margin-bottom: 10px
+
+.form-control
+  border-radius 0
+
+//colors
+.orange-color
+  color: brand-orange
+
+.orange-bgcolor
+  background-color: brand-orange
+
+.orange-bgcolor-dark
+  background-color: brand-orange-dark
+
+.badge
+  background-color: #AAAAAA
+  border: 1px solid grey-dark
+  font-size: font-size-xsmall
+  border-radius: 500px
+  font-style:none
+  padding: 3px 5px
+  line-height: 9px
+
+.badge-orange
+.badge-orange-l
+  background-color: brand-orange
+  border: 1px solid brand-orange-dark
+  color: #FFFFFF
+  border-radius: 100px
+
+.badge-orange
+  font-size: font-size-xsmall
+  font-style:none
+  padding: 3px 5px
+  line-height: 9px
+
+.badge-orange-l  
+  font-size: 14px 
+  padding: 3px 8px
+  line-height: 19px
+
+.btn-p-0
+  padding: 0
+.btn-p-0-12
+  padding: 0 12px
+
+.tbl
+  display:table
+
+.tr
+  display:table-row
+
+.dib
+  display: inline-block
+.db 
+  display: block
+.td
+  display:table-cell
+  vertical-align:middle
+
+.td
+  i.icon
+    vertical-align:middle
+
+.pr 
+  position: relative
+
+button.rmdefault  
+  border:none
+  background-color:transparent
+  box-shadow:none
+  outline:none
+  &:hover
+    outline:none
+    box-shadow:none
+  &:active
+    outline:none
+    box-shadow:none
+
+span.greycolor
+  color:grey-dark
+span.blackcolor 
+  color:brand-black
+
+.bg-orange
+  background-color: brand-orange
+
+.bg-black
+  background-color: brand-black
+
+.tx-orange
+  color: brand-orange
+
+.tx-orange-dark
+  color: brand-orange-dark
+
+.tx-black
+  color: brand-black
+
+.tx-grey
+  color: grey
+
+.tx-lgrey
+  color: grey-light
+
+.vat 
+  vertical-align: top
+.tal 
+  text-align: left 
+.tar 
+  text-align: right
+.tac 
+  text-align: center
+  
+a.unstyle 
+  text-decoration: none
+  color: inherit
+  &:hover 
+    text-decoration: none
+    color: inherit
+
+.challenge-btn 
+  width: 113px
+
+.hight-five-btn 
+  width: 121px
+
+.hight-five-btn
+.connected
+.go-to-map
+.challenge-btn 
+  display: inline-block
+  text-transform: uppercase
+  cursor: pointer
+  line-height: 30px
+  color: grey
+  .icon-high-five
+  .icon-badge-1
+  .icon-hoopmap-menu
+  .icon-challenge
+    display: inline-block
+    margin-right: 5px
+    font-size: 1.5em
+    vertical-align: middle
+  .text 
+    vertical-align: middle
+    display: inline-block
+
+span.icon-user.small
+  font-size: 41px
+  background-color: grey-lighter
+  display: inline-block
+  margin: 0px 3px 3px 0
+  padding: 7px 6px 0 6px
+  color: grey-dark
+
+
+
+a 
+  cursor: pointer
+
+.default50
+  display: inline-block
+  background-color: grey-lighter
+  height: 48px 
+  width: 48px 
+  text-align: center 
+  font-size: 20px
+  line-height: 46px !important
+  border: 1px solid #DEDEDE
+  color: grey-light
+
+.default64
+  display: inline-block
+  background-color: grey-lighter
+  height: 62px
+  width: 62px 
+  text-align: center 
+  font-size: 20px
+  line-height: 62px !important
+  border: 1px solid #DEDEDE
+  color: grey-light
+
+.default29
+  display: inline-block
+  background-color: grey-lighter
+  height: 27px 
+  width: 27px 
+  text-align: center 
+  font-size: 16px
+  line-height: 27px !important
+  border: 1px solid #DEDEDE
+  color: grey-light
+
+.default77
+  display: inline-block
+  background-color: #f2f2f2
+  height: 77px
+  width: 77px
+  text-align: center
+  font-size: 33px
+  line-height: 74px !important
+  border: 1px solid #dedede
+  color: grey-light
+
+.default202
+  display: inline-block
+  background-color: brand-black-o3
+  height: 192px 
+  width: 202px 
+  text-align: center 
+  line-height: 192px !important
+  font-size: 25px
+  color: grey-light
+
+.l-icon 
+  font-size: 35px 
+
+
+.fsxb 
+  font-size: font-size-xbig 
+
+.bgligher
+  background-color: grey-lighter
+
+.sdn-select
+  box-shadow: none
+  border: none
+  width: auto
+  &:focus
+    box-shadow: none
+    border: none
+
+.alert-wrapper
+  position: fixed
+  top: 81px
+  z-index: 999
+
+.alert
+  width: 430px
+  padding: 17px
+  margin-bottom: 1px
+  border-radius: 0 !important
+  border: 0
+
+.alert-success
+  background-color: brand-black
+  color: #FFFFFF
+
+.alert-danger
+  background-color: #9C0C0C
+  color: #FFFFFF
+
+.alert-dismissable 
+  .close
+    right: -1px
+
+.gray-link
+  color: grey
+  &:hover 
+    color: brand-black
+
+.black-link 
+  color: brand-black
+  &:hover 
+    color: brand-black
+
+.orange-link
+  color: brand-orange
+  &:hover 
+    color: brand-black
+
+.tdn
+  &:hover
+    text-decoration: none
+
+.labels
+  color: white
+  background-color: red
+  font-family: "Lucida Grande", "Arial", sans-serif
+  font-size: 10px
+  text-align: center
+  width: 10px
+  white-space: nowrap
+
+div.work-in-progress
+  position: absolute 
+  height: 100% 
+  width: 100%
+  background-color: rgba(255, 255, 255, 0.40)
+  z-index: 99
+  text-align: center
+  i
+    margin-top: 200px
+    display: inline-block
+    font-size: 44px
+
+div.img-is-loading
+  position: absolute
+  width: 100%
+  height: 100%
+  background: rgba(255, 255, 255, 0.73)
+  border: 2px solid dashed #DDDDDD
+  z-index: 99
+  img   
+    position: absolute
+    top: 50%
+    left: 50%
+    margin-left: -15px
+    margin-top: -15px
+
+
+.on-going-process 
+  position: absolute
+  z-index: 9999
+  background: #FFF
+  text-align: center
+  top: 35%
+  line-height: 101px
+  left: 50%
+  margin-left: -250px
+  box-shadow: 0 0 2px
+  width: 500px
+  h1 
+    margin: 0px 0px 30px 0px
+
+
+
+
+.view-animate-container 
+  position: relative
+  height: 100px!important
+  position: relative
+  background: white
+  border: 1px solid black
+  height: 40px
+  overflow: hidden
+  background-color: #FFFFFF
+  z-index: 9999
+
+.view-animate 
+
+.view-animate.ng-enter, .view-animate.ng-leave 
+  transition: all 0.2s ease
+  display: block
+  width: 100%
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0                                                     
+
+.view-animate.ng-enter 
+  left: 100%
+  opacity: 1
+
+.view-animate.ng-leave
+  opacity: 0
+
+.view-animate.ng-enter.ng-enter-active 
+  left: 0
+  opacity: 0
+
+.view-animate.ng-leave.ng-leave-active 
+  left: -100%
+
+//cursore types
+.auto            
+  cursor: auto
+.default         
+  cursor: default
+.none         
+  cursor: none
+.context-menu    
+  cursor: context-menu
+.help            
+  cursor: help
+.pointer         
+  cursor: pointer
+.progress        
+  cursor: progress
+.wait            
+  cursor: wait
+.cell            
+  cursor: cell
+.crosshair    
+  cursor: crosshair
+.text            
+  cursor: text
+.vertical-text   
+  cursor: vertical-text
+.alias           
+  cursor: alias
+.copy            
+  cursor: copy
+.move            
+  cursor: move
+.no-drop         
+  cursor: no-drop
+.not-allowed     
+  cursor: not-allowed
+.all-scroll      
+  cursor: all-scroll
+.col-resize      
+  cursor: col-resize
+.row-resize      
+  cursor: row-resize
+.n-resize        
+  cursor: n-resize
+.e-resize        
+  cursor: e-resize
+.s-resize        
+  cursor: s-resize
+.w-resize        
+  cursor: w-resize
+.ns-resize       
+  cursor: ns-resize
+.ew-resize       
+  cursor: ew-resize
+.ne-resize       
+  cursor: ne-resize
+.nw-resize       
+  cursor: nw-resize
+.se-resize       
+  cursor: se-resize
+.sw-resize       
+  cursor: sw-resize
+.nesw-resize     
+  cursor: nesw-resize
+.nwse-resize     
+  cursor: nwse-resize
+//cursore types end

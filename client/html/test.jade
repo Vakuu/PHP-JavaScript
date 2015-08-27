@@ -1,0 +1,43 @@
+doctype 5
+html(x-ng-app=pkg.name, data-app-version=pkg.version, x-ng-controller="MainCtrl", x-ng-init="init()")
+  head
+    <!-- Latest compiled and minified CSS -->
+    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
+    style 
+      .product {
+        padding: 10px;
+        border: 1px solid #DDDDDD;
+        margin-top: 20px;
+      }
+      .product img {
+        max-width: 100%;
+      }
+
+  body
+
+    div.container
+      div.row 
+        div.col-sm-12 
+          header 
+            h1 This is header
+    
+    div.content-page 
+      div.container 
+        div.row
+          div.col-sm-3
+            div(style="height: 200px; background-color: #DDDDDD;") 
+              h1 Filter goes here
+          div.col-sm-9 
+            div.row 
+              - for (var i = 0; i < 10; ++i) {
+              div.col-sm-3 
+                div.product
+                  h5.pheader Product Title
+                  img(src="http://static.carbonads.com/Advertisers/74394d44308649468fa312afdeaa27cd.png")
+                  p $100  
+              - } 
+          
+    footer 
+      div.container 
+        div.col-sm-12 
+          h1 This is FOOTER

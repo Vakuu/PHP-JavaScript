@@ -1,0 +1,60 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+
+#header{
+	width: 100%;
+}
+
+#container{
+	width: 100%;
+	height: auto;
+	border: 1px solid gray;
+}
+
+#request_container{
+	border: 1px solid gray;
+}
+
+#request_container, .req{
+	text-align: left;
+}
+
+#build_container{
+	width: 100%;
+	height: auto;
+	border: 1px solid gray;
+}
+
+#association_container{
+	width: 100%;
+	height: auto;
+	border: 1px solid gray;
+}
+
+.hide{
+	display: none;
+}
+
+#build_table,
+#ppls{
+	margin-left: 1.5em;
+}
+
+#docs_area{
+	width: 100%;
+	height: auto;
+	margin-left: 25px;
+}
+#u, #r, #k{
+	font-weight: bold;
+}
+
+i{
+	font-size: 16px;
+}
+
+.red{
+	color: red;
+}

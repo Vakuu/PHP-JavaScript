@@ -1,0 +1,137 @@
+div#teams(style="position: relative;")
+  div.work-in-progress
+    i.icon-ball.orange-color
+    h1 This feature will be available soon.<br/> We’ll make the assist when it’s ready.
+  div.container
+    div.row 
+      div.col-xs-7
+        h5.grey Total Results {{players.length}}
+        div.list(x-ng-repeat="player in players")
+          div.team
+            div.pull-left
+              a(href="#")
+                img.vat(x-ng-src="{{player.picture}}")
+              div.dib
+                h2.mt0
+                  a(href="#"): {{ player.name}}
+                small  CITY: New York
+            div.pull-right
+              div.dib.hight-five-btn 
+                span.icon-high-five
+                span.mr5.text HIGH FIVE
+                span.badge 10
+              div.dib.challenge-btn.mr5.ml10
+                span.icon-hoopmap-menu
+                span.text GO TO MAP
+            div.clearfix
+            table.mt10 
+              tr 
+                td: h5.mt0.grey FAIRPLAY (Score)
+                td: h5.mt0.grey GENDER
+                td: h5.mt0.grey TEAM PLAYER
+                td: h5.mt0.grey ROSTER
+              tr 
+                td
+                  h3.mt0.fairplay 
+                    span.icon-level-1
+                    span.icon-level-2
+                    span.icon-level-3.orange-color
+                    span.icon-level-4
+                    span.icon-level-5
+                td: h5.mt0 {{player.gender}}
+                td: h5.mt0 {{player.age}}
+                td
+                  div.roster-wrapper
+                    a(href="#")
+                      img(src="http://placehold.it/24x24") 
+                    a(href="#")
+                      img(src="http://placehold.it/24x24") 
+                    a(href="#")
+                      img(src="http://placehold.it/24x24") 
+
+      div.col-xs-5
+        aside.right.search-controls
+          div.header
+            p Search and find new 
+              span.tx-orange TEAMS 
+              | to challenge near you.
+          div.controls-wrapper
+            hr
+            div.form-group
+              div.row
+                h3.col-xs-3.control-label.mb0.tx-grey(style="margin-top: 4px") COUNTRY
+                div.col-xs-9
+                  input.sn-textbox(type="text")
+              div.row 
+                div.col-xs-12
+                  hr
+                  div.city-wrapper
+                    h3.tx-grey.mt0 CITY
+                    div.inline-chk(x-ng-repeat="city in players")
+                      input.sn-chk-radio(type="checkbox", name="{{city.company}}", id="{{'id' + city.company}}")
+                      label.sn-chk-radio(for="{{ 'id' + city.company }}")  
+                      label.tx-grey(for="{{ 'id' + city.company }}") {{city.company}}
+                div.col-xs-12
+                  hr
+                  div.gender-wrapper
+                    h3.tx-grey.mt0 GENDER 
+                    div.inline-chk
+                      input.sn-chk-radio(type="checkbox", name="g_male", id="g_male")
+                      label.sn-chk-radio(for="g_male")  
+                      label.tx-grey(for="g_male") Male
+                    div.inline-chk
+                      input.sn-chk-radio(type="checkbox", name="f_male", id="f_male")
+                      label.sn-chk-radio(for="f_male")  
+                      label.tx-grey(for="f_male") Female
+                  hr 
+                  div.age-category-wrapper
+                    h3.tx-grey.mt0 AGE CATEGORY
+                    div.inline-chk
+                      input.sn-chk-radio(type="checkbox", name="youth", id="youth")
+                      label.sn-chk-radio(for="youth")
+                      label.tx-grey(for="youth") Youth <br/> (11-13)
+                    div.inline-chk
+                      input.sn-chk-radio(type="checkbox", name="teen", id="teen")
+                      label.sn-chk-radio(for="teen")  
+                      label.tx-grey(for="teen") Teen <br/> (14-17)
+                    div.inline-chk
+                      input.sn-chk-radio(type="checkbox", name="adult", id="adult")
+                      label.sn-chk-radio(for="adult")  
+                      label.tx-grey(for="adult") Adult <br/> (18-X)
+                  hr 
+                  div.level-wrapper
+                    h3.tx-grey.mt0 LEVEL
+                    div.inline-chk
+                      input.sn-chk-radio(type="checkbox", name="beginners", id="beginners")
+                      label.sn-chk-radio(for="beginners")  
+                      label.tx-grey(for="beginners") Beginners
+                    div.inline-chk
+                      input.sn-chk-radio(type="checkbox", name="social", id="social")
+                      label.sn-chk-radio(for="social")  
+                      label.tx-grey(for="social") Social
+                    div.inline-chk
+                      input.sn-chk-radio(type="checkbox", name="compititive", id="compititive")
+                      label.sn-chk-radio(for="compititive")  
+                      label.tx-grey(for="compititive") Compititive
+                    div.inline-chk
+                      input.sn-chk-radio(type="checkbox", name="pro", id="pro")
+                      label.sn-chk-radio(for="pro")  
+                      label.tx-grey(for="pro") Pro
+                  hr 
+                  div.player-type 
+                    h3.tx-grey.mt0 PLAYER TYPE 
+                    div.inline-chk
+                      input.sn-chk-radio(type="checkbox", name="2vs2", id="2vs2")
+                      label.sn-chk-radio(for="2vs2")  
+                      label.tx-grey(for="2vs2") 2vs2
+                    div.inline-chk
+                      input.sn-chk-radio(type="checkbox", name="3vs3", id="3vs3")
+                      label.sn-chk-radio(for="3vs3")  
+                      label.tx-grey(for="3vs3") 3vs3
+                    div.inline-chk
+                      input.sn-chk-radio(type="checkbox", name="5vs5", id="5vs5")
+                      label.sn-chk-radio(for="5vs5")  
+                      label.tx-grey(for="5vs5") 5vs5
+                  hr
+
+include blocks/footer

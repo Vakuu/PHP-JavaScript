@@ -1,0 +1,64 @@
+doctype 5
+html(x-ng-app=pkg.name, data-app-version=pkg.version, x-ng-controller="MainCtrl", x-ng-init="init()")
+  head
+    //block title
+    title Slamdunk Network
+    //- meta(name="viewport", content="width=device-width, initial-scale=1")
+    //- link(rel='icon', href='/' + pkg.version + '/img/favicon.png', type='image/x-icon')
+    //- link(rel='shortcut', href='/' + pkg.version + '/img/favicon.png', type='image/x-icon')
+    block stylesheets
+      link(href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300', rel='stylesheet')
+      // usemin2:css:app
+    
+    script(src="//cdn.pubnub.com/pubnub.min.js")  
+    block scripts
+      // usemin2:js:head
+    
+    //facebook api
+    
+    script
+
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '150251821812646',
+          status     : true,
+          xfbml      : true
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
+    //close facebook api
+
+  body(x-sn-sticky-header, x-ng-class="handle")
+    div#fb-root
+    div(x-ng-switch, on="isLoggedIn")
+      div(x-ng-switch-when="false")
+        div(x-ng-include="'#{pkg.version}/templates/blocks/public-nav.html'")
+      div(x-ng-switch-when="true")
+        div(x-ng-include="'#{pkg.version}/templates/blocks/player-nav.html'")
+    div.alert-wrapper(x-ng-show="!loading")
+      alert(ng-repeat='alert in alerts', type='alert.type', close='closeAlert($index)', x-ng-cloak) {{alert.msg}}
+      div(growl)
+    div.loading(x-ng-show="loading")
+      img(src="#{pkg.version}/img/LoadingSDN100x100.gif")
+    div.on-going-process(x-ng-show="processDis", x-ng-cloak)
+      img(src="#{pkg.version}/img/loader.gif")
+      h1.mt0 {{processMsg}}
+    block content
+
+    
+    
+    script(src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true")
+    script(src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.8/src/markerwithlabel.js")
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+    script(src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js")
+    script(src="//pubnub.github.io/angular-js/scripts/pubnub-angular.js")
+    //- script(src="//a.vimeocdn.com/js/froogaloop2.min.js")
+    // usemin2:js:body

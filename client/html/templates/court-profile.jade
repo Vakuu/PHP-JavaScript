@@ -1,0 +1,156 @@
+
+div#court-profile.player-profile
+  div.container
+    section.profile
+      div.row
+        div.col-xs-7.left
+          div.row
+            div.col-xs-8
+              div.heading
+                h1.player-name {{info.name}}  
+                h5.mt0 
+                  span.tx-grey ADDRESS: 
+                  span {{info.address | formatAddress}}
+                h5.mt0 
+                  span.tx-grey CREATED BY: 
+                  a.tx-black {{info.userId.fname + ' ' + info.userId.lname }}
+            div.col-xs-4
+          div.row
+            div.col-xs-12
+              table.bgligher(style="width: 100%;") 
+                tr 
+                  td(width="33%") 
+                    div.pro-pic-wrapper(style="background-image: url({{info.mainImage.image_large_url}})", x-ng-show="info.mainImage", sdn-media-element, large-image="{{info.mainImage.media_url}}", title="{{info.name}}")
+                    //img.user-pro-pic(x-ng-src="{{info.mainImage.image_large_url}}", x-ng-show="info.mainImage", sdn-media-element)
+                    span.default202.icon-sdn-default(x-ng-show="!info.mainImage")
+                    //img(src="http://www.forumpiece.com/data/avatars/l/24/24777.jpg?1393262966", sdn-media-element)
+                  td.vat
+                    div.player-info.court-info 
+                      div.db.mt10
+                        i.vat.tx-grey.icon-court-type.dib
+                        div.dib  
+                          h4.grey.mb0 COURT TYPE
+                          h3.mt0 {{ info.ctype }}
+                      div.db.mt20
+                        i.vat.tx-grey.icon-surface.dib
+                        div.dib 
+                          h4.grey.mb0 SURFACE
+                          h3.mt0 {{info.surface  ? info.surface : "---" }}
+                      div.db.mt20 
+                        i.vat.tx-grey.icon-number-hoops.dib
+                        div.dib.mb0
+                          h4.grey.mb0 NR. OF HOOPS
+                          h3.mt0 {{info.num_hoops}} 
+                        td  
+                  td.vat 
+                    div.player-info.court-info
+                      div.db.mt10 
+                        i.vat.tx-grey.icon-lines.dib
+                        div.dib
+                          h4.grey.mb0 LINES
+                          h3.mt0 {{info.lines ? info.lines : '---'}}
+                      div.db.mt20
+                        i.vat.tx-grey.icon-rim-height.dib 
+                        div.dib
+                          h4.grey.mb0 RIM HEIGHT
+                          h3.mt0 {{info.hheight ? info.hheight : '--'}}
+                      div.db.mt20 
+                        a.edit.grey.ml10(x-ng-href="#/edit-court/{{info._id}}", x-ng-show="activeUser._id == info.userId._id")
+                          span.icon-setting
+                          | Edit court
+          
+          div.row 
+            div.col-sm-12 
+              table.feature-tbl.mt20(width="100%") 
+                tr 
+                  td.vat
+                    .dib.tac  
+                      h3.grey.mt0 ON COURT 
+                      i.tx-grey.l-icon.icon-notification
+                  td.pl10
+                    div.pull-left 
+                      p.fsxb 
+                        span.badge-orange-l {{info.playersOnCourtToday.length}}
+                        |  Players on 
+                        a.orange-link {{info.name}}
+                        |  now  
+                      p.fsxb
+                        span.badge-orange-l {{info.playersAttendingToday.length}}
+                        |  Player(s) showing up today on 
+                        a.orange-link {{info.name}}
+                    a.pull-right.pull-right.btn-default.btn.mb10(x-ng-click="showup()", x-ng-show="displayShowUp") SHOW
+                    a.pull-right.pull-right.btn-primary.btn.mb10(x-ng-click="noshow()", x-ng-show="displayNoShow") NO SHOW
+                tr: td(colspan="2"): hr.mb20
+                tr 
+                  td
+                    div.dib.tac(x-ng-show="activeUser._id == info.userId._id") 
+                      a.gray-link.upload-media(x-ng-href="#/edit-court/{{info._id}}", x-ng-show="activeUser._id == info.userId._id")
+                        h3.mt0 MEDIA 
+                        i.l-icon.icon-upload-icon
+                        h4 UPLOAD
+                    div.dib.tac(x-ng-show="activeUser._id != info.userId._id")
+                      a.gray-link
+                        h3.mt0 MEDIA 
+                        i.l-icon.icon-upload-icon
+                  td.pl10
+                    i.default77.icon-sdn-default.mr5
+                    i.default77.icon-sdn-default.mr5
+                    i.default77.icon-sdn-default.mr5
+                    i.default77.icon-sdn-default.mr5
+                    div.mb20
+                tr: td(colspan="2"): hr.mb20
+                tr 
+                  td.vat
+                    .dib.tac 
+                      h3.mt0.grey SHARE
+                      i.icon-sharing.l-icon.tx-grey
+                  td
+                    //a.ml20.mr20.gray-link.tdn(x-ng-click="shareCourtFB()"): i.icon-fb.l-icon
+                    a.ml20.mr20.gray-link.tdn(sdn-facebook-sharing, name="{{ info.name }}", caption="{{ info.name }}", description="{{ info.address | formatAddress }}", pic="{{ info.mainImage.image_large_url }}", link="{{ court_url }}"): i.icon-fb.l-icon
+                    a.ml20.mr20.gray-link.tdn(x-ng-click="shareCourtTwitter()"): i.icon-twitter.l-icon
+                    div.mb20
+                tr: td(colspan="2"): hr.mb20
+                tr 
+                  td.vat
+                    .dib.tac  
+                      h3.mt0.grey KINGS & <br/> QUEENS
+                      i.icon-badge-6.tx-grey.l-icon.
+                  td 
+                    div.row 
+                      div.col-xs-6
+                        i.ml10.default50.icon-sdn-default.pull-left.mr10
+                        p.tx-grey Kings of court is comming soon
+                      div.col-xs-6
+                        i.default50.icon-sdn-default.pull-left.mr10
+                        p.tx-grey Kings of court is comming soon
+                    div.row.mt10
+                      div.col-xs-6
+                        i.ml10.default50.icon-sdn-default.pull-left.mr10
+                        p.tx-grey Kings of court is comming soon
+                      div.col-xs-6
+                        i.default50.icon-sdn-default.pull-left.mr10
+                        p.tx-grey Kings of court is comming soon
+          
+          div.row 
+            div.col-xs-12
+             hr
+        div.col-xs-5
+          aside.right
+            h1 HOOP MAP 
+              small Latest activities
+
+            //sdn-aside-hoopmap
+            sdn-aside-hoopmap
+            div.court-summary(x-ng-show="false")
+              div.hight-five-btn
+                span.icon-high-five
+                span.mr5.text HIGH FIVED COURTS
+                span.badge 10
+              a.ml10.unstyle Court1
+              span ,  
+              a.unstyle Court2 name
+            sdn-wall(limit="5")
+  //midea dialog
+  div(sdn-media)
+
+include blocks/footer

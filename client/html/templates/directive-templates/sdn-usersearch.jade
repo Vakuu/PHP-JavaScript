@@ -1,0 +1,16 @@
+input.form-control.site-search(type="text", x-ng-model="name", placeholder="SEARCH..", x-ng-change="findUser()", x-ng-blur="findUserFocusOut()")
+img(x-ng-show="loading_user", src="#{pkg.version}/img/loader.gif", width="20", style="position: absolute; top: 2px; right: 2px; height: 20px; z-index: 1;")
+div.search-suggestion(x-ng-show="name.length > 0")
+  i.fa.fa-times-circle.close-search(x-ng-click="close()")
+  h3.noresult.tac.mt20.mb20(x-ng-show="err.code == 'ResourceNotFound'") No resourse found
+  a.search-result(x-ng-repeat="r in results | limitTo: 5", x-ng-href="{{ '#/player-profile/' + r._id }}")
+    div.media
+      div.pull-left(href="#")
+        img.media-object(src="http://placehold.it/50x50", alt="...")
+      div.media-body
+        h4.media-heading.tx-orange {{ r.fname + '' + r.lname }}
+        p {{r.tvu}} 
+        p {{r.address.country}}
+    hr
+  a.tac.more-result(href="#", x-ng-show="results.length > 10") More search results     
+

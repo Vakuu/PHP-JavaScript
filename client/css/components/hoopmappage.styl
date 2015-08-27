@@ -1,0 +1,367 @@
+
+.container-res
+  padding:0 15px
+
+section#map
+  width: 100%
+
+section#map h1
+  margin:0
+  padding:0
+
+div#hoopmap
+  position: relative
+  margin: 0
+  padding: 0
+  top: 0
+
+div#hoopmap aside
+  position: absolute
+  width:450px
+  top:0
+  bottom:40px
+  left: 0
+  //box-shadow:0 2px 1px #DDD
+  transition:left 0.2s ease
+  border-right:2px solid grey-lighter
+  z-index: 200
+  background-color: brand-white
+  overflow: hidden
+
+div#close-aside
+  position:absolute
+  right:5px
+  top:12px
+  cursor:pointer  
+
+div#open-aside
+  position:absolute
+  left: 0
+  top: 0
+  z-index: 200
+  background-color:grey-lighter
+  padding:10px
+  cursor:pointer
+
+//nav tab style
+ul.hoopmap-tabs
+  border-bottom:0
+  background-color:grey-lighter
+
+ul.hoopmap-tabs > li > a
+  text-decoration:none !important
+  position: relative
+  color:brand-black
+  text-align:center
+  padding-top: 15px
+  padding-bottom:10px
+  border:none !important
+  cursor: pointer
+  &:hover
+    background-color:transparent !important
+    color:brand-orange
+  i.icon 
+    visibility:hidden 
+  label
+    display:block
+
+ul.hoopmap-tabs > li.active > a
+  background-color:transparent !important
+  border:none !important
+  color:brand-orange
+  &:before
+    content: ""
+    position:absolute
+    top:0
+    left: 50%
+    margin-left: -15px
+    height: 17px
+    width: 30px
+    background:url("../img/collections.png") no-repeat scroll -150px -66px rgba(0,0,0,0) 
+  i.icon 
+    visibility:visible
+
+ul.hoopmap-tabs li .title
+  font-weight:normal
+  display:block
+
+//Hoop map style
+div.court-images
+  img
+    max-width:100%
+  .main-image-inner
+    height:200px
+    width:100%    
+    
+
+.marker-label
+.hoopmap-icon
+  z-index: 101
+  position: absolute
+  display: block
+  width: 20px
+  height: 20px
+  top: 0
+  right: 0
+  
+.hoopmap-icon
+  font-size: 11px !important
+  text-align: center
+  color: #FFFFFF
+  white-space: nowrap
+  top:-56px
+  right: -16px
+  border-radius: 50px
+  border: 1px solid brand-white
+  background-color: brand-orange
+  font-style: normal
+  font-weight: bold
+  line-height: 17px
+
+div.create-court-wrapper
+  padding:20px 20px
+  .address-wrapper
+    position: relative
+    div
+      position: absolute
+      height: 100%
+      width: 100%
+      img 
+        position: absolute
+        top: 50%
+        left: 50%
+        margin-top: -15px 
+        margin-left: -15px
+
+form#create-court input[type="submit"]
+  display:inherit
+  margin:20px auto
+
+div#courtcreate
+  overflow: auto
+  table 
+    width: 100%
+    color: grey-dark
+    i 
+      font-size: 47px        
+  div.court-types
+    text-align:center
+    label.lbl-control
+      display:block
+    label.sn-chk-radio
+      margin-bottom:20px
+  div.rating-wrapper
+    text-align:center
+
+
+div.type-wrapper
+  display:inline-block
+  margin:0 15px
+
+div.court-details 
+  div.court-details-inner
+    padding:0 30px
+    label.lbl-field
+      margin-top:20px
+
+
+div.details-wrapper
+  div.upload-button-wrapper
+  div.tr
+    width:100%
+    button.rmdefault
+      float:right
+      margin-top:5px
+      label
+        cursor:pointer
+
+div.hoop-number-wrapper
+  text-align:center
+
+div.hoop-number
+  display:inline-block
+  margin:0 4px
+
+div.hoop-number > label
+  display:block
+
+div.rim-height-wrapper
+  width:100%
+
+div.rim-height 
+div.surface
+  display:inline-block
+  width:32%
+
+div.rim-height div.rm-label
+  display:inline-block
+  vertical-align:middle
+  padding-left:5px
+  text-align:center
+
+div.rim-height div.rm-label label
+  margin-bottom:0
+  display:block
+  vertical-align:middle
+
+div.surface-label
+  display:inline-block
+
+div.court-images
+  div.cprofile-pic
+    float: left
+    margin-right: 18px
+    position:relative
+    font-size:0
+    text-align:center
+    overflow:hidden
+    cursor:pointer
+    &:hover 
+      div.slide
+        top:0
+    div.slide
+      position:absolute
+      height:100%
+      width:100%
+      background-color:rgba(121, 121, 123, 0.5)
+      top:182px
+      transition:all 0.2s ease
+      button
+        margin-top:40px
+        label 
+          display:block
+          color:brand-white
+          margin-top:10px
+          cursor:pointer
+          font-size:font-size-small
+  div.cthumb-wrapper
+    float: left
+    padding: 0 1px 1px 1px
+    font-size:0
+
+li#mapdata-tab
+  display:none
+
+div.details
+  .fsxb 
+    margin-left: 32px
+  .badge-orange-l
+    position: absolute
+    margin-left: -31px
+  a.more-user
+    margin:5px 0 0 20px
+    display:block
+    cursor:pointer
+    &:hover
+      text-decoration:none
+  div.king-of-court
+    span.username 
+      color:brand-orange
+    padding:10px 0 0 0
+    .td
+      padding:0 10px 0 0
+  hgroup
+    margin-bottom:20px
+    h1
+      margin-bottom:0
+      a 
+        color: inherit
+        &:hover
+          text-decoration: underline
+    label.lbl-field
+      margin-top:4px
+      span.blackcolor
+        margin-left:10px
+  label.court-type
+    margin-left:-20px
+  i.badge
+    vertical-align:top
+    margin-top:2px 
+    margin-left:5px
+    font-style:normal
+
+div#courtfilters
+  overflow: auto
+  .courttype-wrapper
+    .my_location  
+      .sn-chk-radio 
+        margin-left: -4px
+    .icon-my-location
+      font-size: 59px
+    .badge
+      border: 1px solid #FFFFFF
+
+
+  div.country-wrapper
+    margin-top:20px
+    select 
+      width: 100%
+  hr 
+    margin:5px 0
+  label.lbl-field
+    margin:0 0 10px 0
+  div.city-chk-wrapper
+    width:30%
+    margin-right: 10px
+    display:inline-block
+    label 
+      text-transform: capitalize
+  div.country-wrapper
+    input[type="text"]
+      width:50%
+      display:inline-block
+  div.court-types 
+    text-align:center
+    font-size:0
+    div.court-type 
+      width:20%
+      display:inline-block
+      font-size:font-size
+      vertical-align:top
+      > label 
+        padding:0 1px
+        margin-bottom:0
+      i.icon
+        position:relative
+        i.badge
+          position: absolute
+          top: -8px
+          right: -8px
+          font-style: normal
+          padding: 3px 5px
+      .sn-chk-radio
+        vertical-align:bottom
+        margin-bottom:0
+      .street_court
+        height:50px
+
+div.userlist
+  label
+    margin-bottom:0
+    margin-left:5px
+  div.td 
+    padding-top:2px
+
+#mapdata
+  overflow: auto
+  h3 
+    text-transform: capitalize
+
+.labels
+  // padding: 5px
+  background-color: transparent
+  // display: inline-block
+  // height: 85px
+  overflow: visible !important
+  // width: 68px
+  // background-image: url('http://localhost:3000/0.0.1/img/indoor-court.png')
+  // opacity: 1 
+  // i 
+  //   position: absolute 
+  //   text-decoration: none 
+  //   padding: 10px
+  //   top: -10px 
+  //   right: -10px 
+  //   background-color: brand-orange
+  //   border: 1px solid white
+  //   border-radius: 100px

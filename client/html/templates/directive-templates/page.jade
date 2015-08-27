@@ -1,0 +1,5 @@
+ul.pager
+  li(ng-class='{disabled: noPrevious(), previous: align}')
+    a(href='', ng-click='selectPage(page - 1)') {{getText('previous')}}
+  li(ng-class='{disabled: noNext(), next: align}')
+    a(href='', ng-click='selectPage(page + 1)') {{getText('next')}}

@@ -1,0 +1,127 @@
+div#team-profile
+
+  div.roster-wrapper
+    background-image: url("../img/roster-bg.png")
+    background-size: 100% auto
+    background-repeat: no-repeat
+    div.player 
+      position: absolute
+      .badge 
+        position: absolute
+        z-index: 999
+        top: -9px
+        right: -10px
+      span.icon-marker-base
+        font-size: 60px
+        span.icon-user 
+          font-size: 40px
+          position: absolute
+          left: 0
+          z-index: 99
+          font-size: 40px
+          background-color: #DDD
+          margin: 1px
+          padding: 0 4px
+          img 
+            position: absolute
+            left: 2px
+            top:0
+    div.player1
+      right: 69px
+      top: 64px
+    div.player2
+      left: 69px
+      top: 64px
+    div.player3
+      top: 103px
+      left: 50%
+      margin-left: -34px
+    div.player4 
+      left: 247px
+    div.player5 
+      left: 157px
+
+  div.left
+    .icon-high-five
+      font-size: 20px
+      vertical-align: middle
+  
+  div.player-info
+    h4 
+      margin-top: 0
+      text-transform: uppercase
+    div.info 
+      width: 33%
+      float: left
+      h4 
+        margin-bottom: 0
+        text-transform: uppercase
+      h3
+        margin-top: 0
+ 
+  div.progress-bar-wrapper
+    position: relative
+    h4.orange-color 
+      position: absolute
+      top: 0
+      right: 0
+    .progress 
+      margin-bottom: 5px
+      margin-top: 4px
+    .rating-info-wrapper
+      text-align: center
+      .rating-info
+        display: inline-block
+        margin-right: 5px
+        .square
+          height: 20px
+          width: 20px
+          display: inline-block
+        .square.orange
+          background-color: brand-orange 
+        .square.black 
+          background-color: brand-black
+        p 
+          display: inline-block
+          vertical-align: middle
+  div.total-summary
+    text-align: right
+    h1, p 
+      display: inline-block
+
+table.tatest-results
+  color: brand-black
+  display: block 
+  margin: 20px
+  span.score
+    display: block 
+    text-align: center
+h3.fairplay
+  span
+    display: inline-block
+    margin-right: 3px
+    margin-top: 3px
+
+
+#modal-manage-team
+  .nav-tabs 
+    background-color: grey-dark
+    li 
+      a 
+        color: brand-black
+        border: 0
+        &:hover 
+          background-color: transparent
+          border: 0
+    li.active 
+      a 
+        color: #ffffff
+        background-color: transparent
+        border: 0
+  .modal-body 
+    padding: 0
+    .tp-wrapper
+      padding: 10px
+    .media
+      padding-bottom: 10px 
+      border-bottom: 1px solid grey-lighter

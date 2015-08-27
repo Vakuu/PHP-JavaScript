@@ -1,0 +1,179 @@
+.container#network-page
+  .row
+    .col-xs-7
+      sdn-wall(limit="5")
+
+    .col-xs-5
+      
+      .nw-sidebar
+        div.work-in-progress
+          i.icon-ball.orange-color
+          h1(x-ng-click="changeRoute()") Work in progress<br/>have patience
+        .nw-sidebar-title.clearfix
+          //img(src="#{pkg.version}/img/profile_pics/profile.jpeg")
+          img.user-img(x-ng-src="{{activeUser.photo.image_small_url}}")
+          span.user-name {{activeUser.fname}}
+          span.profile-status
+            | Profile
+            i {{pro_finished}}
+            | finished
+
+        .nw-challenges
+          h3.title-challenges.clearfix
+            i.icon.icon-challenge-black
+            | Challenges 
+            span.badge 12
+            .challenge-frieds
+              | Challenge your friends on
+              a.btn.btn-link.btn-p-0
+                span.fa-stack
+                  i.fa.fa-circle.fa-stack-2x
+                  i.fa.fa-facebook.fa-stack-1x.fa-inverse
+              a.btn.btn-link.btn-p-0
+                span.fa-stack
+                  i.fa.fa-circle.fa-stack-2x
+                  i.fa.fa-tumblr.fa-stack-1x.fa-inverse
+          ul.list-unstyled.challenges-list
+            li
+              img(src="http://placehold.it/25x25")
+              b Martin Hermansen&nbsp;
+              | challenged you for a one on one&nbsp;
+              a(href="#") Accept challenge
+            li
+              img(src="http://placehold.it/25x25")
+              | Team&nbsp;
+              b Monstars&nbsp;
+              | challenged Alistar85.&nbsp;
+              a(href="#") Accept challenge
+            li
+              img(src="http://placehold.it/25x25")
+              b Waqas&nbsp;
+              a(href="#") Accept&nbsp;
+              | your challenge
+            li
+              img(src="http://placehold.it/25x25")
+              b Nicolai Dimon&nbsp;
+              | challenged you for a one on one&nbsp;
+              a(href="#") Accept challenge
+            li
+              img(src="http://placehold.it/25x25")
+              b Donald Trump&nbsp;
+              | challenged you for a one on one&nbsp;
+              a(href="#") Accept challenge
+        
+        .nw-req-invites
+          h3.title-challenges.clearfix
+            i.icon.icon-invites-black
+            | Requests & Invites&nbsp;
+            span.badge 6
+          ul.list-unstyled.challenges-list
+            li
+              img(src="http://placehold.it/25x25")
+              b Team Spalding&nbsp;
+              | invited you to a Tournament
+            li
+              img(src="http://placehold.it/25x25")
+              b Martin Hermansen&nbsp;
+              | invited you to his tead&nbsp;
+              b HEAT.&nbsp;
+              a(href="#") Accept
+            li
+              img(src="http://placehold.it/25x25")
+              b Pernille Ravn&nbsp;
+              | invited you to play for team&nbsp;
+              b Raven.&nbsp;
+              a(href="#") Accept
+            li
+              img(src="http://placehold.it/25x25")
+              b Kasper&nbsp;
+              | invites you to his network&nbsp;
+              a(href="#") Join
+            li
+              img(src="http://placehold.it/25x25")
+              b Donald Trump&nbsp;
+              | invites you to his network&nbsp;
+              a(href="#") Join
+
+        .nw-badges
+          h3.title-challenges.clearfix
+            i.icon.icon-letter-b
+            | Badges Level1
+          ul.list-badges.list-inline.list-unstyled.text-center
+            li
+              i.icon.badges-1-black
+            li
+              i.icon.badges-2-gray
+            li
+              i.icon.badges-3-gray
+            li
+              i.icon.badges-4-gray
+            li
+              i.icon.badges-5-gray
+
+        .nw-teams
+          h3.title-challenges.clearfix
+            i.icon.icon-letter-t
+            | Teams&nbsp;
+            span.badge 4
+            button.btn.btn-primary.btn-sm.pull-right(type="button")
+              | CREATE TEAM
+          ul.list-unstyled.challenges-list
+            li
+              img(src="http://placehold.it/25x25")
+              | Slam dunk network support
+            li
+              img(src="http://placehold.it/25x25")
+              | Allstar 85
+
+        .nw-expand-invite
+          h2.text-center 
+            | Expand your basketball - Network
+          .invite-box.text-center
+            button.btn.btn-default.btn-sm(data-toggle="modal", data-target="#modal-invite-friends")
+              | Invite
+            | &nbsp;&nbsp;Your friend to slam dunk network
+
+        .nw-network-activities
+          .nw-sidebar-title.clearfix
+            span.title Network & Activities
+          .row.box-wrapper
+            .col-xs-6
+              h4 Active Players
+              .row.active-player-box
+                .col-xs-2(x-ng-repeat="n in [1,2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18, 19]")
+                  a(href="#")
+                    i.default29.icon-sdn-default
+                    //img(src="http://placehold.it/35x35")
+            .col-xs-6
+              h4 Rate Skills
+              .row.rate-skills-box
+                .col-xs-2(x-ng-repeat="n in [1,2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18, 19]")
+                  a(href="#")
+                    i.default29.icon-sdn-default
+              .row
+                h5 Players you haven't rated yet!
+          ///.nw-calender
+            sdn-calender   
+
+include blocks/footer
+
+div#modal-invite-friends.modal.alert-modal.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        div.modal-header
+          buttonc.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+          h2.modal-title#myModalLabel INVITE FRIENDS
+      div.modal-body
+        h3 SEND EMAIL VIA...
+        p Mail  
+          a(href="#")  username@gmail.com
+      dvi.modal-footer Share this
+        a.btn.btn-link.btn-p-0
+          span.fa-stack
+            i.fa.fa-circle.fa-stack-2x
+            i.fa.fa-facebook.fa-stack-1x.fa-inverse
+        a.btn.btn-link.btn-p-0
+          span.fa-stack
+            i.fa.fa-circle.fa-stack-2x
+            i.fa.fa-tumblr.fa-stack-1x.fa-inverse

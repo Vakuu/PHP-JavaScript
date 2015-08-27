@@ -1,0 +1,249 @@
+div#player-profile.player-profile
+  div.container
+    section.profile
+      div.row
+        div.col-xs-7.left
+          div.row
+            div.col-xs-7
+              div.heading
+                h1.player-name {{ info.fname + ' ' + info.lname }}  
+                 small(x-ng-show="info.king_of_court") king of Court in 
+                  a Israels, Plads, 
+                  | CPH and 
+                  a 6 more
+                h4(x-ng-show="info.home_court") Home Court: 
+                  span The Cage (NY)
+            div.col-xs-5
+              div.pull-right.mt20
+                button.btn.btn-primary.mr10(x-ng-click="connect()", x-ng-show="!connected", x-ng-hide="pendding") Connect
+                a.mr10.connected.dib(x-ng-show="pendding", data-toggle="dropdown", data-target="#")
+                  span.icon-badge-1
+                  span.text PENDDING
+                a.mr10.connected.dib(x-ng-show="connected", data-toggle="dropdown", data-target="#")
+                  span.icon-badge-1
+                  span.text CONNECTED
+                ul.dropdown-menu.sdn-dropdown-2
+                  li: a Bench profile!!
+                  li: a(x-ng-click="disconnect()") Disconnect
+                  li 
+                    a(href='#') 
+                      | HELP ? Goto 
+                      span.orange-color SDN Support Team
+                div.challenge-btn
+                  span.icon-challenge
+                  span.text CHALLENGE
+          div.row
+            div.userinfo-wrapper.mt20 
+              div.col-sm-4.pl0
+                //span.icon-user.large
+                div.pro-pic-wrapper(style="background-image: url({{info.photo.image_small_url}})", x-ng-show="info.photo", sdn-media-element, large-image="{{info.photo.media_url}}", title="{{info.name}}")
+                //img.user-pro-pic(x-ng-src="{{info.photo.image_small_url}}", x-ng-show="info.mainImage", sdn-media-element)
+                span.default202.icon-sdn-default(x-ng-show="!info.photo")
+              div.col-sm-4
+                div.player-info 
+                  h4.grey.dib.mt10 Player Info  
+                  //- small
+                  //-   a.grey.ml10(href="/edit-profile") Edit 
+                  //-     span.icon-setting
+                  div.info 
+                    h4.grey AGE
+                    h3 28
+                  div.info 
+                    h4.grey GENDER
+                    h3 Male
+                  div.info 
+                    h4.grey HEIGHT
+                    h3 1,85m
+                  div.info 
+                    h4.grey POSITION
+                    h3 Guard
+                  div.info 
+                    h4.grey WEIGHT
+                    h3 85kg
+                  div.info 
+                    h4.grey LEVEL
+                    h3 Social
+              div.col-sm-4
+                div.player-info 
+                  h4.grey.dib.mt10 PLAYER STATS
+                  h4.mt0.mb0.grey AGE
+                  h3.mt0 28
+                  h4.mt0.mb0.grey GENDER
+                  h3.mt0 Male
+          div.row 
+            div.col-sm-12
+              div.fairplayer.dib
+                h4.grey.mt0.pt10 FAIRPLAYER(score)
+                h3.mt10 
+                  span.icon-level-1
+                  span.icon-level-2
+                  span.icon-level-3.orange-color
+                  span.icon-level-4
+                  span.icon-level-5
+              div.dib.info-bottom.vat.ml10
+                h2.grey.dib.mr10 
+                  span.icon-media
+                  |  MEDIA 
+                  a.orange-link {{info.freinds.length}}
+                h2.grey.dib.mr10 
+                  span.icon-friends
+                  |  FRIENDS 
+                  a.orange-link {{info.freinds.length}}
+                h2.grey.dib.mr10 
+                  span.icon-team-symbol
+                  |  TEAMS 
+                  a.orange-link {{info.teams.length}}
+          
+          div.row
+            div.col-xs-12
+              hr
+              sdn-skills-rating
+              hr
+          div.row 
+            div.col-sm-12
+              div.badge-heading.pull-left
+                h2.grey.mb0.mt10 BADGES 
+                small 
+                  a.unstyle See all badges
+              div.badges-wrapper.pull-left.mt10.mb10
+                sdn-badges
+          div.row
+            div.col-xs-12
+              hr 
+              div.clearfix
+              div.pull-left
+                h3.grey.mb0.mt10 MEDIA
+                small Go to media 
+              div.media-wrapper.pull-left
+                img(src="http://placehold.it/64x64", x-ng-repeat="n in [1,2,3,4,5,6,7,8]")
+          div.row 
+            div.col-xs-12
+              hr 
+              sdn-calender  
+
+          div.row(x-ng-show="false")  
+            div.col-xs-3 
+              h1.mt0 SKILLS
+                small
+                  a  48 
+                  | RATES
+            div.col-xs-5
+              div.rating-info-wrapper
+                div.rating-info 
+                  span.square.orange 
+                  p Friends' ratings
+                div.rating-info
+                  span.square.black  
+                  p My ratings
+            div.col-xs-4 
+              div 
+                button.btn-primary.btn APPROVE
+                button.btn-primary.btn EDIT SKILLS
+          div.row(x-ng-show="false") 
+            div.col-xs-6
+              h1.ct.grey OFFENSE
+              div.progress-bar-wrapper
+                h4.grey.mb0 3 Points
+                div.progress
+                  div.progress-bar.progress-bar-success(role="progressbar", aria-valuenow="40", aria-valuemin="0", aria-valuemax="100", style="width: 40%")
+                    span.sr-only 40% Complete (success)
+                div.progress
+                  div.progress-bar.progress-bar-info(role="progressbar", aria-valuenow="80", aria-valuemin="0", aria-valuemax="100", style="width: 80%")
+                    span.sr-only 80% Complete (success)
+                h4.orange-color 9.5
+              div.progress-bar-wrapper
+                h4.grey.mb0 Mid Range
+                div.progress
+                  div.progress-bar.progress-bar-success(role="progressbar", aria-valuenow="40", aria-valuemin="0", aria-valuemax="100", style="width: 40%")
+                    span.sr-only 40% Complete (success)
+                div.progress
+                  div.progress-bar.progress-bar-info(role="progressbar", aria-valuenow="40", aria-valuemin="0", aria-valuemax="100", style="width: 40%")
+                    span.sr-only 80% Complete (success)
+                h4.orange-color 9.5
+              div.progress-bar-wrapper
+                h4.grey.mb0 Lay-ups
+                div.progress
+                  div.progress-bar.progress-bar-success(role="progressbar", aria-valuenow="70", aria-valuemin="0", aria-valuemax="100", style="width: 70%")
+                    span.sr-only 40% Complete (success)
+                div.progress
+                  div.progress-bar.progress-bar-info(role="progressbar", aria-valuenow="30", aria-valuemin="0", aria-valuemax="100", style="width: 30%")
+                    span.sr-only 80% Complete (success)
+                h4.orange-color 9.5
+              div.progress-bar-wrapper
+                h4.grey.mb0 Off. Rebound
+                div.progress
+                  div.progress-bar.progress-bar-success(role="progressbar", aria-valuenow="70", aria-valuemin="0", aria-valuemax="100", style="width: 70%")
+                    span.sr-only 40% Complete (success)
+                div.progress
+                  div.progress-bar.progress-bar-info(role="progressbar", aria-valuenow="30", aria-valuemin="0", aria-valuemax="100", style="width: 30%")
+                    span.sr-only 80% Complete (success)
+                h4.orange-color 2
+              div.total-summary
+                p Total offensive score:
+                h1.orange-color 23,5
+            div.col-xs-6 
+              h1.ct.grey DIFENSE
+              div.progress-bar-wrapper
+                h4.grey.mb0 3 Points
+                div.progress
+                  div.progress-bar.progress-bar-success(role="progressbar", aria-valuenow="40", aria-valuemin="0", aria-valuemax="100", style="width: 40%")
+                    span.sr-only 40% Complete (success)
+                div.progress
+                  div.progress-bar.progress-bar-info(role="progressbar", aria-valuenow="80", aria-valuemin="0", aria-valuemax="100", style="width: 80%")
+                    span.sr-only 80% Complete (success)
+                h4.orange-color 9.5
+              div.progress-bar-wrapper
+                h4.grey.mb0 Mid Range
+                div.progress
+                  div.progress-bar.progress-bar-success(role="progressbar", aria-valuenow="40", aria-valuemin="0", aria-valuemax="100", style="width: 40%")
+                    span.sr-only 40% Complete (success)
+                div.progress
+                  div.progress-bar.progress-bar-info(role="progressbar", aria-valuenow="40", aria-valuemin="0", aria-valuemax="100", style="width: 40%")
+                    span.sr-only 80% Complete (success)
+                h4.orange-color 9.5
+              div.progress-bar-wrapper
+                h4.grey.mb0 Lay-ups
+                div.progress
+                  div.progress-bar.progress-bar-success(role="progressbar", aria-valuenow="70", aria-valuemin="0", aria-valuemax="100", style="width: 70%")
+                    span.sr-only 40% Complete (success)
+                div.progress
+                  div.progress-bar.progress-bar-info(role="progressbar", aria-valuenow="30", aria-valuemin="0", aria-valuemax="100", style="width: 30%")
+                    span.sr-only 80% Complete (success)
+                h4.orange-color 9.5
+              div.progress-bar-wrapper
+                h4.grey.mb0 Lay-ups
+                div.progress
+                  div.progress-bar.progress-bar-success(role="progressbar", aria-valuenow="70", aria-valuemin="0", aria-valuemax="100", style="width: 70%")
+                    span.sr-only 40% Complete (success)
+                div.progress
+                  div.progress-bar.progress-bar-info(role="progressbar", aria-valuenow="30", aria-valuemin="0", aria-valuemax="100", style="width: 30%")
+                    span.sr-only 80% Complete (success)
+                h4.orange-color 9.5
+              div.total-summary
+                p Total Defensive score:
+                h1.orange-color 23,5
+          div.row 
+            div.col-xs-12
+             hr
+        div.col-xs-5
+          aside.right
+            h1 HOOP MAP 
+              small Latest actevities
+
+            //sdn-aside-hoopmap
+            map#google_map
+            div.court-summary
+              div.hight-five-btn
+                span.icon-high-five
+                span.mr5.text HIGH FIVED COURTS
+                span.badge 10
+              a.ml10.unstyle Court1
+              span ,  
+              a.unstyle Court2 name
+            sdn-wall(limit="5")
+
+
+  //midea dialog
+  div(sdn-media)
+
+include blocks/footer

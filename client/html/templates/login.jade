@@ -1,0 +1,171 @@
+div.front-page-wrapper
+  section#slideshow
+    //sdn-carousel
+    include directive-templates/sdn-carousel
+    div.login-form-container
+      div.container-login.mt20
+        div.row
+          div.col-xs-12
+            div.social-updates
+              div.signup-loading
+              h1.mb0 CHECK BALL...
+              h3.mt0.mb20.mt10.tx-orange Sign up via social media or mail.
+              table.mt20
+                tr 
+                  td.vat 
+                    a.login-with-fb(href="http://sdapi.herokuapp.com/auth/facebook", title="Sign up via Facebook") 
+                      i.pull-left.icon-fb(style="margin-top: 0; margin-left: 9px; font-size: 20px;")
+                      span.ml15.pull-left.sep |
+                      | Connect
+                    a.login-with-twiiter.mt10(href="http://sdapi.herokuapp.com/auth/twitter", title="Sign up via Twitter") 
+                      //i.pull-left.fa.fa-twitter(style="margin-top: 2px;margin-left: 9px;")
+                      i.icon-twitter.pull-left(style="margin-top: 0px; margin-left: 9px; font-size: 20px;")
+                      span.ml15.pull-left.sep |
+                      | Connect
+                  td
+                    div.tac.mr5.ml5.tx-grey
+                      div(style="width: 1px; background-color: #8c8c8c; height: 50px; display: inline-block;")
+                      div.mt10.mb10 OR
+                      div(style="width: 1px; background-color: #8c8c8c; height: 50px; display: inline-block;")
+                  td            
+                    //small(x-ng-show="frmSignup.error") {{frmSignup.message}}
+                    form.form-inline(role="form", name="frmSignup", x-ng-submit="create()", autocomplete="off")
+                      div
+                        label.sr-only(for="fname") Name
+                        input.form-control(type="text", id="fname", required , x-ng-model="user.fname", name="fname", placeholder="Name")
+                      div.mt10
+                        label.sr-only(for="email") Email
+                        input.form-control(type="email", id="email", required, x-ng-model="user.email", name="email", placeholder="user@mail.com", x-ng-blur="CheckEmailValidity()")
+                      //div.mt10
+                      //  label.sr-only(for="reemail") user@mail.com 
+                      //  input.form-control(type="email", id="reemail", required, x-ng-model="user.reemail", name="reemail", placeholder="user@mail.com", x-ng-change="compareEmail()")
+                      div.mt10
+                        label.sr-only(for="password") Password
+                        input.form-control(type="password", id="password", name="password", required, x-ng-model="user.password", placeholder="Password")
+                      //div.form-group
+                      //  label.sr-only(for="reemail") Re enter Password
+                      //  input.form-control(type="password", id="repassword", x-ng-blur="comparePassword()", required, x-ng-model="user.repassword",  placeholder="Re enter Password")
+
+                      //- div.dob-wrapper.tal
+                      //-   label.tal(style="display: block;") Date of Birth 
+                      //-   input(type="hidden", name="dob", x-ng-model="user.dob")
+                      //-   select(x-ng-options="y for y in years", required, x-ng-model="user_dob.year", x-ng-change="fillDateData()")
+                      //-     option(value="") --Year--
+                      //-   select(x-ng-options="m.name for m in months", required, x-ng-model="user_dob.month", x-ng-change="fillDateData()")
+                      //-     option(value="") --Month--
+                      //-   select(x-ng-options="d for d in days", required, x-ng-model="user_dob.day", x-ng-change="calculageAge()")
+                      //-     option(value="") --Day--
+                      
+                      div.mt10
+                        input.db.btn.btn-primary(x-ng-disabled="frmSignup.$invalid", type="submit", style="width: 100%;", value="SLAM IT!")
+
+
+              
+         
+  //end photo/slideshow
+
+  //play connected goes here
+  section#play-connected
+    div.container
+      div.row
+        div.col-xs-12  
+          div.tac.mb20 
+            h1.mt0.mb20 WHAT IS SLAMDUNK NETWORK?
+            p Slamdunk network is a social network for basketball enthusiasts all over the world.
+      div.row
+        div.col-xs-6
+          div.text 
+            div.video
+              //img(src="#{pkg.version}/img/video_295x166.jpg", style="width: 470px;")
+              iframe#video(src="//player.vimeo.com/video/67803850?api=1&player_id=video", width="470", height="264", frameborder, webkitallowfullscreen, mozallowfullscreen, allowfullscreen)
+              //div.playbutton(data-toggle="modal", data-target="#myVideoModal", style=""): i.icon-vimeo-play
+              //iframe(src="//player.vimeo.com/video/67803850", width="200", height="100", frameborder="0", webkitallowfullscreen, mozallowfullscreen, allowfullscreen)
+        div.col-xs-6
+          //div.image
+          img(src="#{pkg.version}/img/Imagesektion2.jpg", style="max-width: 100%;")
+          div.mapp-icon-wrapper.pull-right(style="margin-right: 35px;")
+            a.hidden(href="#", title="Download Android Application")
+              i.android-store.icon
+            a(href="#", title="Download iPhone Application", x-ng-click="changeURL()")
+              i.iphone-store.icon
+            
+  //end play connected
+
+  //slamdunk activity
+  section#activities
+    div.container
+      div.row.header
+        div.col-xs-12
+          h1.tac FEATURE LIST
+          h5.tac.mb20 More features will soon be available
+      div.row 
+        div.col-xs-12 
+          div.feature
+            div.icon-wrapper
+              div.icon-feature-.icon-feature--1
+            h3 EXPAND YOUR BASKETBALL COMMUNITY
+          div.feature
+            div.icon-wrapper
+              div.icon-feature-.icon-feature--2
+            h3 CREATE TEAMS WITH YOUR FRIENDS
+          div.feature
+            div.icon-wrapper
+              div.icon-feature-.icon-feature--3
+            h3 CHALLENGE OTHER PLAYERS
+          div.feature
+            div.icon-wrapper
+              div.icon-feature-.icon-feature--4
+            h3 LOCATE GAMES & CREATE COURTS
+          //- div.feature
+          //-   div.icon-wrapper
+          //-     i.icon-feature-4
+          //-   h3 K/Q of court
+          //-   p Battle for king/Queen of the Courts  
+      div.row.hidden
+        div.col-xs-4
+          a(href="#", title="Click here to view more details")
+            div.activity.activity1.tbl
+              div.tr 
+                div.td
+                  img(src="http://placehold.it/349x199")
+              div.tr 
+                div.td
+                  div.bottom-panel
+                    h3 JUST JOINED
+              p Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+        div.col-xs-4
+          a(href="#", title="Click here to view more details")
+            div.activity.activity1.tbl
+              div.tr 
+                div.td
+                  img(src="http://placehold.it/349x199")
+              div.tr 
+                div.td
+                  div.bottom-panel
+                    h3 LATEST COURT 
+            
+              p Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+        div.col-xs-4
+          a(href="#", title="Click here to view more details")
+            div.activity.activity1.tbl
+              div.tr 
+                div.td
+                  img(src="http://placehold.it/349x199")
+              div.tr 
+                div.td
+                  div.bottom-panel
+                    h3 LATEST BADGES 
+              p Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+  //end slamdunk activity
+include blocks/footer
+.modal.fade#myVideoModal(sdn-model-close="CloseVideoModel", sdn-vimeo-model)
+  .modal-dialog(style="width: 930px;")
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+        h4.modal-title Slamdunk Network Introduction
+      .modal-body(style="padding: 0;")
+        iframe#video(src="//player.vimeo.com/video/67803850?api=1&player_id=video", width="908", height="522", frameborder, webkitallowfullscreen, mozallowfullscreen, allowfullscreen)
+      .modal-footer
+        button.btn.btn-default(type='button', data-dismiss='modal') Close
+

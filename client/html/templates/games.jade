@@ -1,0 +1,60 @@
+div#games(style="position: relative;")
+  div.work-in-progress
+    i.icon-ball.orange-color
+    h1 This feature will be available soon.<br/> We’ll make the assist when it’s ready.
+  div.container
+    div.row 
+      div.col-xs-7
+        h5.grey Total Results {{players.length}}
+        table(width="100%")
+          tr(x-ng-repeat="player in players")
+            td 
+              table(width="100%")
+                tr(bgcolor="#f2f2f2") 
+                  td(align="center")
+                    img.mt10.mb10(src="http://placehold.it/64x64")
+                    h3.mt0.mb0.grey TEAM/Player Name
+                    h1.mt10.mb10.tx-orange.score 37
+                  td(align="center")
+                    h3.grey.mt0.mb0 00/00/0000
+                    h1.grey.mb10.mt10.vs VS
+                    h3.grey.mt0.mb0 Court Name  
+                  td(align="center")
+                    img.mt10.mb10(src="http://placehold.it/64x64")
+                    h3.mt0.mb0.grey TEAM/Player Name
+                    h1.mt10.mb10.tx-orange.score 37
+                tr 
+                  td(height="5")
+
+      div.col-xs-5
+        aside.right.search-controls
+          div.header
+            p Checkout your scorecard and other 
+              span.tx-orange GAMES 
+              | played.
+          div.controls-wrapper
+            hr
+
+          h3.tx-grey.mt0 MY GAMES
+          div.dib.pl20.pr10
+            h3.tx-grey.mt0.tac 1vs1
+            div
+              input.sn-chk-radio(type="checkbox", name="option_1", id="option_1")
+              label.sn-chk-radio(for="option_1")  
+              label.tx-grey(for="option_1") Option 1
+            div
+              input.sn-chk-radio(type="checkbox", name="option_2", id="option_2")
+              label.sn-chk-radio(for="option_2")  
+              label.tx-grey(for="option_2") Option 2
+          div.dib.pl20
+            h3.tx-grey.mt0.tac TEAMS
+            div
+              input.sn-chk-radio(type="checkbox", name="team_1", id="team_1")
+              label.sn-chk-radio(for="team_1")  
+              label.tx-grey(for="team_1") Team 1
+            div
+              input.sn-chk-radio(type="checkbox", name="team_2", id="team_2")
+              label.sn-chk-radio(for="team_2")  
+              label.tx-grey(for="team_2") Team 2
+
+include blocks/footer

@@ -1,0 +1,414 @@
+div#hoopmap(x-ng-init="init()")
+  div#open-aside(x-ng-click='asideVisibility("open")', x-ng-show='openVisible') Open
+  
+  aside(x-sn-window='120',x-sn-aside="open")
+    div#close-aside(x-ng-click='asideVisibility("")', x-ng-show='closeVisible')
+      i.left_arrow.icon
+
+    ul.hoopmap-tabs.nav.nav-tabs(sdn-tab-change="tabChange")
+      li(id="mapdata-tab")
+        a(data-target="#mapdata", data-toggle="tab") 
+          label MAP DATA
+          
+      li.active
+        a#filtercourt(data-target="#courtfilters", data-toggle="tab")
+          label FIND COURT
+          
+      li
+        a#createcourt(data-target="#courtcreate", data-toggle="tab") 
+          label CREATE COURT
+
+
+    div.hoopmap-tabs-content.tab-content
+      //Map Data Tab content start
+      div#mapdata.tab-pane(x-sn-window='170')
+        
+        div.details-wrapper.pb20(x-ng-if="selectedCourtInfo")
+          div.details
+            div.container-res
+              div.row
+                div.col-xs-12
+                  hgroup
+                    h1: a.tdn(x-ng-href="#/court-profile/{{selectedCourtInfo._id}}", title="Visit Court Page") {{selectedCourtInfo.name}}
+                    label.lbl-field ADDRESS:
+                      span.blackcolor {{selectedCourtInfo.address | formatAddress}} 
+                    br   
+                    label.lbl-field CREATED BY:
+                      span.blackcolor {{selectedCourtInfo.userId.fname ? selectedCourtInfo.userId.fname : 'Player Name'}}
+              div.row
+                div
+                  div.col-xs-12
+                    div.pro-pic-wrapper(sdn-media-element, x-ng-show="selectedCourtInfo.mainImage", large-image="{{selectedCourtInfo.mainImage.media_url}}", title="{{selectedCourtInfo.name}}", style="height: 192px; width: 202px; float: left; overflow: hidden;")
+                      img(x-ng-src="{{selectedCourtInfo.mainImage.image_large_url}}", style="max-width: 100%;")
+                    span.default202.icon-sdn-default.vat(x-ng-show="!selectedCourtInfo.mainImage")
+                      
+                    div.dib(style="width: 50%; height: 192px; padding-left: 10px; background: #EEEEEE; margin-left: -3px;")
+                      table 
+                        tr 
+                          td 
+                            h4.mt10.mb0.grey COURT TYPE
+                            h3.mt0 {{selectedCourtInfo.ctype}}
+                          td 
+                            h4.mt10.mb0.grey SURFACE
+                            h3.mt0 {{selectedCourtInfo.ctype}}
+                        tr  
+                          td  
+                            h4.mt10.mb0.grey NR. OF HOOPS
+                            h3.mt0 {{selectedCourtInfo.num_hoops ? selectedCourtInfo.num_hoops : '---'}}
+                          td  
+                            h4.mt10.mb0.grey LINES
+                            h3.mt0 {{selectedCourtInfo.lines ? selectedCourtInfo.lines : '---'}}
+                        tr    
+                          td  
+                            h4.mt10.mb0.grey RIM HEIGHT
+                            h3.mt0 {{selectedCourtInfo.hheight}}
+                          td
+                            a.gray-link(x-ng-href="#/edit-court/{{selectedCourtInfo._id}}").tx-grey(x-ng-show="selectedCourtInfo.userId._id == activeUser._id") Edit 
+                              span.icon-setting
+
+             
+              div.row 
+                div.col-sm-12 
+                  table 
+                    tr 
+                      td.vat 
+                        h3.grey ON COURT 
+                        i.tx-grey.l-icon.icon-notification
+                      td.pl10 
+                        p.fsxb 
+                          span.badge-orange-l {{selectedCourtInfo.playersOnCourtToday.length}}
+                          |  Players on 
+                          a.orange-link(x-ng-href="#/court-profile/{{selectedCourtInfo._id}}") {{selectedCourtInfo.name}}
+                          |  now  
+                        p.fsxb
+                          span.badge-orange-l {{selectedCourtInfo.playersAttendingToday.length}}
+                          |  Player(s) showing up today on 
+                          a.orange-link(x-ng-href="#/court-profile/{{selectedCourtInfo._id}}") {{selectedCourtInfo.name}}
+                    tr
+                      td 
+                      td(x-ng-show="displayShowUp"): a.pull-right.btn-default.btn.mb10(x-ng-click="showup(selectedCourtInfo._id)") NOW SHOW
+                      td(x-ng-show="displayNoShow"): a.pull-right.btn-primary.btn.mb10(x-ng-click="noshow(selectedCourtInfo._id)") NO SHOW
+                    tr 
+                      td.vat 
+                        h3.mt0.grey MEDIA 
+                        i.tx-grey.l-icon.icon-upload-icon
+                      td.pl10
+                        i.default77.icon-sdn-default.mr5.tx-grey
+                        i.default77.icon-sdn-default.mr5.tx-grey
+                        i.default77.icon-sdn-default.mr5.tx-grey
+                        div.mb20
+                    tr 
+                      td.vat 
+                        h3.mt0.grey SHARE
+                      td 
+                        a.tdn.gray-link(x-ng-click="shareCourtFB('http://moodle.dallastown.k12.pa.us/file.php/2958/basketball-court.jpg', '{{selectedCourtInfo.name}}', '{{selectedCourtInfo._id}}', '{{selectedCourtInfo.address | formatAddress}} ')").ml20.mr20.tx-grey: i.icon-fb.l-icon
+                        a.tdn.gray-link(x-ng-click="shareCourtTwitter('{{selectedCourtInfo.name}}', '{{selectedCourtInfo._id}}')").ml20.mr20.tx-grey: i.icon-twitter.l-icon
+                        div.mb20 
+                       
+        div(ng-repeat="marker in myMarkers", ui-map-marker="myMarkers[$index]", ui-event="{'map-click': 'openMarkerInfo(marker)'}")
+
+      //Filters Tab content start
+      div#courtfilters.tab-pane.active(x-sn-window='170')
+        div.filter-wrapper
+          div.container-res
+            div.row
+              div.col-xs-12
+                div.country-wrapper
+                  h3.tx-grey.mt0 COUNTRY
+                  select.db.mb10.bgligher.sdn-select.form-control(x-ng-change="countryChange()", x-ng-model="filter.country", x-ng-options="i for i in countries")
+                    //- option(value="") --Country--
+                    //- option(value="Denmark") Denmark
+                    //- option(value="India") India
+                    //- option(value="United States") United States
+                    //- option(value="Bulgaria") Bulgaria
+                  img.ml5(src="#{pkg.version}/img/loader.gif", x-ng-show="loadCities")  
+                  //input(type="text", class="sn-textbox", name="country", title="Select Country", x-ng-model="f_country", x-ng-model-onblur, x-ng-blur="CourtFilter()")
+                  //sdn-search-countries(name="f_country")  
+            
+            //CITY FILTER STARTS
+            div.row
+              div.col-xs-12
+                hr  
+                h3.tx-grey.mt0 CITY
+                  
+            div.row
+              div.col-xs-12
+                div.city-chk-wrapper(x-ng-repeat="c in filter.cities track by $index")
+                  input.sn-chk-radio(type="radio", x-ng-model="filter.city", value="{{c}}", name="filter_city", id="c_{{c}}", x-ng-change="CourtFilter()")
+                  label.sn-chk-radio(for="c_{{c}}")
+                  label(for="c_{{c}}") {{c}}
+            //END CITY FILTER          
+
+            hr
+            div.row
+              div.col-xs-12
+                div.courttype-wrapper
+                  h3.tx-grey.mt0 COURT TYPE
+                  div.vat.dib.ml20.mr30
+                    label.tx-grey.box_court.indoor_court(for="indoor_court")
+                      span.badge.bg-orange {{total_indoor}}
+                      input.sn-chk-radio(type="radio", name="ctype", id="indoor_court", x-ng-model="filter.ctype", x-ng-change="CourtFilter()", value="indoor")
+                      label.sn-chk-radio(for="indoor_court")
+                      label.sn-chk-court.tx-grey.pr(for="indoor_court") 
+                        span.icon-marker-base
+                          span.icon-ball-indoor
+                        span.db Indoor
+                  div.vat.dib.mr30
+                    label.tx-grey.box_court.street_court(for="street_court")
+                      span.badge.bg-orange {{total_street}}
+                      input.sn-chk-radio(type="radio", name="ctype", id="street_court", x-ng-model="filter.ctype", x-ng-change="CourtFilter()", value="street")
+                      label.sn-chk-radio(for="street_court")
+                      label.sn-chk-court.tx-grey.pr(for="street_court") 
+                        span.icon-marker-base
+                          span.icon-ball
+                        span.db Street
+                  div.vat.dib.mr30
+                    label.tx-grey.box_court.active-street(for="active_court")
+                      span.badge.bg-orange {{total_active}}
+                      input.sn-chk-radio(type="radio", name="ctype", id="active_court", x-ng-model="filter.ctype", x-ng-change="CourtFilter()", value="active")
+                      label.sn-chk-radio(for="active_court")
+                      label.sn-chk-court.tx-grey.pr(for="active_court") 
+                        span.icon-marker-base
+                          span.icon-ball
+                        span.db Active <br/> Court
+                  div.vat.dib
+                    label.tx-grey.box_court.my_location(for="my_location")
+                      input.sn-chk-radio(type="radio", name="ctype", id="my_location", x-ng-change="myLocationLoad()", value="my_location", x-ng-model="filter.ctype")
+                      label.sn-chk-radio(for="my_location")
+                      label.sn-chk-court.tx-grey.pr(for="my_location") 
+                        span.icon-my-location.tx-orange
+                        span.db My Location
+              div.col-xs-12.court-types(x-ng-show="false")
+                div.court-type
+                  label(for="street-court")
+                    input.sn-chk-radio(type="checkbox", x-ng-model="f_ctype.street", x-ng-change="CourtFilter()", name="street-court", id="street-court", value="street")
+                    label.sn-chk-radio(for="street-court")
+                    i.street_court_black.icon
+                      i.badge 2
+                  label(for="street-court") Street Court
+                div.court-type
+                  label(for="indoor-court")
+                    input.sn-chk-radio(type="checkbox", x-ng-model="f_ctype.indoor", x-ng-change="CourtFilter()", name="indoor-court", id="indoor-court", value="indoor")
+                    label.sn-chk-radio(for="indoor-court")
+                    i.indoor_court_black.icon
+                      i.badge 2
+                  label(for="indoor-court") Indoor Court
+                div.court-type
+                  label(for="active-indoor-court")
+                    input.sn-chk-radio(type="checkbox",name="active-indoor-court",id="active-indoor-court",value="active-indoor-court")
+                    label.sn-chk-radio(for="active-indoor-court")
+                    i.street_court.icon
+                      i.badge 110
+                  label(for="active-indoor-court") Active Court
+                div.court-type
+                  label(for="friends-playing")
+                    input.sn-chk-radio(type="checkbox",name="friends-playing",id="friends-playing",value="friends-playing")
+                    label.sn-chk-radio(for="friends-playing")
+                    i.icon-my-location.icon
+                  label(for="friends-playing") My location
+
+            div.row(x-ng-show="SDNCourts.length > 0")
+              div.col-xs-12
+                hr
+                label.lbl-field SDN RECOMMENED COURTS
+                  img.ml5(src="#{pkg.version}/img/loader.gif", x-ng-show="loadSDNCourt") 
+              div.tbl.col-xs-12
+                div.tr(ng-repeat="c in SDNCourts")
+                  div.td
+                    i.default29.icon-sdn-default(x-ng-hide="c.photo")
+                    label
+                      a.tx-black(x-ng-href="#/court-profile/{{c._id}}"): b {{c.name ? c.name : c._id}}
+                      | {{c.address | formatAddress}}
+
+            hr
+            div.row
+              div.col-xs-12
+                label.lbl-field NEW COURTS
+                  img.ml5(src="#{pkg.version}/img/loader.gif", x-ng-show="lastRegisteredLoading") 
+              div.tbl.col-xs-12
+                table.mb20
+                  tr.mb10(x-ng-repeat="c in latestCourts")
+                    td.vat: i.mr5.default29.icon-sdn-default(x-ng-hide="c.photo")
+                    td.pb10
+                      a.tx-black(x-ng-href="#/court-profile/{{c._id}}"): b {{c.name ? c.name : c._id}}
+                      |  {{c.address | formatAddress}} 
+                //- div.tr(ng-repeat="c in latestCourts")
+                //-   div.td
+                //-     i.default29.icon-sdn-default(x-ng-hide="c.photo")
+                //-     label
+                //-       a.tx-black(x-ng-href="#/court-profile/{{c._id}}"): b {{c.name ? c.name : c._id}} 
+                //-       | {{c.address | formatAddress}}
+
+      //Create Court Tabl content start
+      div#courtcreate.tab-pane(x-sn-window='170')
+        div.create-court-wrapper
+          form(name="frmCreateCourt", class="create-court", id="create-court", x-ng-submit="addCourt()")
+            input(type="hidden", x-ng-model="activeMarker", required)
+            //- 
+            label(class="lbl-field",for="courname"): h2.mb0.mt0 COURT PROFILE PHOTO
+            input(type="text", ng-model="myModel")
+            input(type="file", ng-file-select="onFileSelect($files)", ng-click="resetInputFile()", required)
+            //input(type="file", ng-file-select="onFileSelect($files)")
+            hr
+            label(class="lbl-field",for="courname"): h2.mb0.mt0 COURT NAME
+            input(type="text", required, x-ng-model="court.name", name="courname", id="courname", class="sn-textbox",title="")
+            div.address-wrapper
+              div(x-ng-show="loadingAddress")
+                img(src="#{pkg.version}/img/loader.gif")
+              label(class="lbl-field",for="address"): h2.mb0.mt0 ADDRESS
+              input(type="text", x-ng-model="court.address.street", name="address", id="address", class="sn-textbox", x-ng-disabled="court.address.map_street")
+              label(class="lbl-field",for="city"): h2.mb0.mt0 CITY
+              input(type="text", x-ng-model="court.address.city", name="city", id="city", class="sn-textbox", x-ng-disabled="court.address.map_city", required)
+              label(class="lbl-field",for="country"): h2.mb0.mt0 COUNTRY
+              input(type="text", x-ng-model="court.address.country", name="country", id="country", class="sn-textbox", x-ng-disabled="court.address.map_country", required)
+            hr
+
+            //court type
+            table
+              tr 
+                td: h2.mb0.mt0 COURT TYPE
+                td 
+              tr
+                td: i.icon-court-type
+                td
+                  div.court-types
+                    div.type-wrapper.indoor
+                      input.sn-chk-radio(type="radio", name="ctype", id="indoor", value="indoor", x-ng-model="court.ctype", required)
+                      label.sn-chk-radio(for="indoor")
+                      label.lbl-indoor(for="indoor") 
+                        i.indoor_court.icon
+                        label.lbl-control Indoor
+                    div.type-wrapper.street
+                      input.sn-chk-radio(type="radio", name="ctype", id="street", value="street", x-ng-model="court.ctype", required)
+                      label.sn-chk-radio(for="street")
+                      label.lbl-street(for="street") 
+                        i.street_court.icon
+                        label.lbl-control street 
+              tr.sep: td(colspan="2"): hr
+              tr 
+                td: h2.mb0.mt0 NO. OF HOOPS
+                td
+              tr 
+                td: i.icon-number-hoops
+                td
+                  //input(type="hidden", x-ng-model="court.num_hoops", required, name="num_hoops")
+                  div.hoop-number-wrapper  
+                    div.dib.mr5.ml5
+                      input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_1", value="1", required)
+                      label.sn-chk-radio(for="num_hoops_1")
+                      label.db(for="num_hoops_1") 1
+                    div.dib.mr5.ml5
+                      input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_2", value="2", required)
+                      label.sn-chk-radio(for="num_hoops_2")
+                      label.db(for="num_hoops_2") 2
+                    div.dib.mr5.ml5
+                      input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_3", value="3", required)
+                      label.sn-chk-radio(for="num_hoops_3")
+                      label.db(for="num_hoops_3") 3
+                    div.dib.mr5.ml5
+                      input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_4", value="4", required)
+                      label.sn-chk-radio(for="num_hoops_4")
+                      label.db(for="num_hoops_4") 4
+                    div.dib.mr5.ml5
+                      input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_5", value="5", required)
+                      label.sn-chk-radio(for="num_hoops_5")
+                      label.db(for="num_hoops_5") 5
+                    div.dib.mr5.ml5
+                      input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_6", value="6", required)
+                      label.sn-chk-radio(for="num_hoops_6")
+                      label.db(for="num_hoops_6") 6
+                    div.dib.mr5.ml5
+                      input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_7", value="7", required)
+                      label.sn-chk-radio(for="num_hoops_7")
+                      label.db(for="num_hoops_7") 7
+                    div.dib.mr5.ml5
+                      input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_8", value="8", required)
+                      label.sn-chk-radio(for="num_hoops_8")
+                      label.db(for="num_hoops_8") 8
+                    div.dib.mr5.ml5
+                      input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_9", value="9", required)
+                      label.sn-chk-radio(for="num_hoops_9")
+                      label.db(for="num_hoops_9") 9
+                    div.dib.mr5.ml5
+                      input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_10", value="10", required)
+                      label.sn-chk-radio(for="num_hoops_10")
+                      label.db(for="num_hoops_10") 10 
+              tr.sep: td(colspan="2"): hr
+              tr 
+                td: h2.mb0.mt0 RIM HIEHGT
+                td 
+              tr
+                td: i.icon-rim-height
+                td 
+                  div.rim-height-wrapper
+                    div.rim-height
+                      input.sn-chk-radio(type="radio", x-ng-model="court.hheight", name="hheight", id="standard", value="standard", required)
+                      label.sn-chk-radio(for="standard")
+                      div.rm-label
+                        label(for="standard") Standard 
+                    div.rim-height
+                      input.sn-chk-radio(type="radio", x-ng-model="court.hheight", name="hheight", id="kids", value="kids", required)
+                      label.sn-chk-radio(for="kids")
+                      div.rm-label
+                        label(for="kids") Kids 
+                    div.rim-height
+                      input.sn-chk-radio(type="radio", x-ng-model="court.hheight", name="hheight", id="higher", value="higher", required)
+                      label.sn-chk-radio(for="higher")
+                      div.rm-label
+                        label(for="higher") Higher 
+              tr.sep: td(colspan="2"): hr
+              tr 
+                td: h2.mb0.mt0 SURFACE 
+                td
+              tr
+                td: i.icon-surface
+                td
+                  div.surface-wrapper
+                    div.surface
+                      input.sn-chk-radio(type="radio", x-ng-model="court.surface", name="surface", id="asphalt", value="asphalt", required)
+                      label.sn-chk-radio(for="asphalt")
+                      div.surface-label
+                        label(for="asphalt") Asphalt  
+
+                    div.surface
+                      input.sn-chk-radio(type="radio", x-ng-model="court.surface", name="surface", id="wood", value="wood", required)
+                      label.sn-chk-radio(for="wood")
+                      div.surface-label
+                        label(for="wood") Wood
+
+                    div.surface
+                      input.sn-chk-radio(type="radio", x-ng-model="court.surface", name="surface", id="rubber", value="rubber", required)
+                      label.sn-chk-radio(for="rubber")
+                      div.surface-label
+                        label(for="rubber",class="surface-label") Rubber  
+              tr.sep: td(colspan="2"): hr
+              tr 
+                td: h2.mb0.mt0 LINES
+                td 
+              tr
+                td: i.icon-lines
+                td  
+                  div.surface-wrapper
+                    div.surface
+                      input.sn-chk-radio(type="radio", x-ng-model="court.lines", name="lines", id="visible", value="visible", required)
+                      label.sn-chk-radio(for="visible")
+                      div.surface-label
+                        label(for="visible") Visible  
+
+                    div.surface
+                      input.sn-chk-radio(type="radio", x-ng-model="court.lines", name="lines", id="bad", value="bad", required)
+                      label.sn-chk-radio(for="bad")
+                      div.surface-label
+                        label(for="bad") Bad
+
+                    div.surface
+                      input.sn-chk-radio(type="radio", x-ng-model="court.lines", name="lines", id="none", value="none", required)
+                      label.sn-chk-radio(for="none")
+                      div.surface-label
+                        label(for="none",class="surface-label") None 
+
+            hr
+            input.btn-default.btn(type="submit",value="CREATE", x-ng-disabled="frmCreateCourt.$invalid || frmCreateCourt.$pristine")
+
+  section#map(x-sn-window='120', ui-map="myMap", style="height:500px",ui-event="{'map-idle':'onMapIdle()', 'map-click': 'addMarker($event, $params)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }", ui-options="mapOptions")
+include blocks/footer

@@ -1,0 +1,46 @@
+.nw-wall-wrapper
+  .nw-msg-post-wrapper.clearfix
+    .nw-text-control-wrapper
+      textarea.form-control.nw-text-control(type="text", placeholder="This feature will be available soon. We’ll make the assist when it’s ready.")
+    .db.tac
+      a.btn.btn-link SHOOTING HOOPS
+      a.btn.btn-link PICK-UP GAME
+      a.btn.btn-link WORKING OUT
+      a.btn.btn-link ON FIRE!!
+
+  //.nw-post-wrapper(x-ng-repeat="post in posts | limitTo: limitPost")
+  .nw-post-wrapper
+    .nw-post-block
+      .nw-post-block-content.clearfix
+        //img.post-user-img(src="http://placehold.it/50x50")
+        i.default50.icon-sdn-default.pull-left.mr10
+        .nw-post-content
+          span.post-user-name
+            | Player Name
+          p This feature will be available soon. We’ll make the assist when it’s ready.
+      .nw-post-block-actions.clearfix
+        .btn-group
+          a.btn.btn-link.btn-high-five
+            i.icon.icon-high-five-black
+            | HIGH FIVE
+            span.badge 10
+          a.btn.btn-link.btn-challenge
+            i.icon.icon-challenge-black 
+            | CHALLENGE
+          a.btn.btn-link.btn-no-border SHARE
+          a.btn.btn-link.btn-no-border(title="facebook", x-ng-click="shareFacebook('http://placehold.it/200x200', '{{post.about}}')")
+            i.fa.fa-facebook
+          a.btn.btn-link.btn-no-border(title="twitter", x-ng-click="shareTwitter('{{post.about}}')")
+            i.fa.fa-tumblr
+        .btn-group.pull-right
+          a.btn.btn-link.btn-comments(x-ng-click="toggleComments()")
+            | Comments 
+            span.badge 12
+      .nw-post-comments(x-ng-show="post.showComments")
+        .comments-wrapper
+          .comment-wrapper.clearfix(x-ng-repeat="comment in post.comments")
+            img.comment-user-img(src="http://placehold.it/50x50")
+            span.comment-user-name {{comment.name}}
+            p.comment {{comment.comment}}
+        .nw-text-control-wrapper
+          textarea.form-control.nw-text-control(type="text", placeholder="What's up?..")

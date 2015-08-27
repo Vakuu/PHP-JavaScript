@@ -1,0 +1,10 @@
+p{
+	margin-left: 1em;
+	margin-right: 1em;
+}
+
+@media print{
+	body{
+		font-size: 50px;
+	}
+}

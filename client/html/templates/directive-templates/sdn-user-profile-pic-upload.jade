@@ -1,0 +1,26 @@
+div#modal-upload-pro-pic.modal.alert-modal.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        buttonc.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+        h2.modal-title#myModalLabel {{title}}
+        
+      div.modal-body
+        div.wrapper
+          
+          //- input(type="file", ng-file-select="onFileSelect($files)", multiple)
+          div.profile-pic-wrapper(ng-file-drop="onFileSelect($files)", ng-file-drag-over-class="optional-css-class", ng-show="dropSupported")
+            div.img-is-loading(x-ng-show="imgLoading")
+              img(src="#{pkg.version}/img/loader.gif")
+            img(x-ng-src="{{cover_photo}}", style="max-width: 100%;")
+          div(ng-file-drop-available="dropSupported=true", x-ng-show="!dropSupported")
+          input(type="text", x-ng-model="myModelObject"),
+          input(type="file", ng-file-select="onFileSelect($files)", width="0")
+          div.sdn-progressbar(style="width: 100%;").mt20
+            div.sdn-ratting.my(style="width: {{progress + '%'}}")
+          hr
+          button.btn.btn-primary.pull-right.ml20(data-dismiss="modal") Close
+          button.btn.btn-primary.pull-right(ng-click="upload.abort()") Cancel Upload
+          div.clearfix
+
+        

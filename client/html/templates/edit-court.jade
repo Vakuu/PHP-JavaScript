@@ -1,0 +1,187 @@
+form(name="frmEdit", x-ng-submit="editCourtProfile()")
+  #edit-court-wrapper(name="privacy-settings")
+    div#edit-court
+      div.container
+        section.profile
+          div.row
+            div.col-xs-7.left
+              div.row
+                div.col-xs-4
+                  div.edit-court-pic(style="position: relative;")
+                    div.pro-pic-wrapper(x-ng-show="court.mainImage", title="{{court.name}}")
+                      div.img-is-loading(x-ng-show="imgLoading")
+                        img(src="#{pkg.version}/img/loader.gif")
+                      img(x-ng-src="{{ court.mainImage.image_large_url }}", style="max-width: 100%;")
+                    span.default202.icon-sdn-default(x-ng-show="!court.mainImage")
+                    div.profile-pic-upload(sdn-user-profile-pic-upload) UPLOAD PIC
+                div.col-xs-8 
+                  h1.grey.dib.mt5 SAVE ALL SETTINGS
+                  input.btn.btn-primary.ml10.vat(type="Submit", value="SLAM IT!", x-ng-disabled="frmEdit.$pristine || frmEdit.$invalid") 
+              div.row 
+                div.col-xs-12
+                  hr
+                  label(class="lbl-field",for="courname"): h2.mb0.mt0 COURT NAME
+                  input(type="text", required, x-ng-model="court.name", name="courname", id="courname", class="sn-textbox", title="")
+                  //court type
+                  hr
+                  table
+                    tr 
+                      td: h2.mb0.mt0.tx-grey COURT TYPE
+                      td 
+                    tr
+                      td: i.icon-court-type.tx-grey
+                      td
+                        div.court-types
+                          div.type-wrapper.indoor
+                            input.sn-chk-radio(type="radio", name="ctype", id="indoor", value="indoor", x-ng-model="court.ctype", required)
+                            label.sn-chk-radio(for="indoor")
+                            label.lbl-indoor(for="indoor") 
+                              i.indoor_court.icon
+                              label.lbl-control Indoor
+                          div.type-wrapper.street
+                            input.sn-chk-radio(type="radio", name="ctype", id="street", value="street", x-ng-model="court.ctype", required)
+                            label.sn-chk-radio(for="street")
+                            label.lbl-street(for="street") 
+                              i.street_court.icon
+                              label.lbl-control street 
+                    tr.sep: td(colspan="2"): hr
+                    tr 
+                      td: h2.mb0.mt0.grey NO. OF HOOPS
+                      td
+                    tr 
+                      td: i.icon-number-hoops.tx-grey
+                      td
+                        //input(type="hidden", x-ng-model="court.num_hoops", required, name="num_hoops")
+                        div.hoop-number-wrapper  
+                          div.dib.mr5.ml5
+                            input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_1", value="1", required)
+                            label.sn-chk-radio(for="num_hoops_1")
+                            label.db(for="num_hoops_1") 1
+                          div.dib.mr5.ml5
+                            input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_2", value="2", required)
+                            label.sn-chk-radio(for="num_hoops_2")
+                            label.db(for="num_hoops_2") 2
+                          div.dib.mr5.ml5
+                            input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_3", value="3", required)
+                            label.sn-chk-radio(for="num_hoops_3")
+                            label.db(for="num_hoops_3") 3
+                          div.dib.mr5.ml5
+                            input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_4", value="4", required)
+                            label.sn-chk-radio(for="num_hoops_4")
+                            label.db(for="num_hoops_4") 4
+                          div.dib.mr5.ml5
+                            input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_5", value="5", required)
+                            label.sn-chk-radio(for="num_hoops_5")
+                            label.db(for="num_hoops_5") 5
+                          div.dib.mr5.ml5
+                            input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_6", value="6", required)
+                            label.sn-chk-radio(for="num_hoops_6")
+                            label.db(for="num_hoops_6") 6
+                          div.dib.mr5.ml5
+                            input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_7", value="7", required)
+                            label.sn-chk-radio(for="num_hoops_7")
+                            label.db(for="num_hoops_7") 7
+                          div.dib.mr5.ml5
+                            input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_8", value="8", required)
+                            label.sn-chk-radio(for="num_hoops_8")
+                            label.db(for="num_hoops_8") 8
+                          div.dib.mr5.ml5
+                            input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_9", value="9", required)
+                            label.sn-chk-radio(for="num_hoops_9")
+                            label.db(for="num_hoops_9") 9
+                          div.dib.mr5.ml5
+                            input.sn-chk-radio(type="radio", x-ng-model="court.num_hoops", name="num_hoops", id="num_hoops_10", value="10", required)
+                            label.sn-chk-radio(for="num_hoops_10")
+                            label.db(for="num_hoops_10") 10 
+                    tr.sep: td(colspan="2"): hr
+                    tr 
+                      td: h2.mb0.mt0.tx-grey RIM HIEHGT
+                      td 
+                    tr
+                      td: i.icon-rim-height.tx-grey
+                      td 
+                        div.rim-height-wrapper
+                          div.rim-height
+                            input.sn-chk-radio(type="radio", x-ng-model="court.hheight", name="hheight", id="standard", value="standard", required)
+                            label.sn-chk-radio(for="standard")
+                            div.rm-label
+                              label(for="standard") Standard 
+                          div.rim-height
+                            input.sn-chk-radio(type="radio", x-ng-model="court.hheight", name="hheight", id="kids", value="kids", required)
+                            label.sn-chk-radio(for="kids")
+                            div.rm-label
+                              label(for="kids") Kids 
+                          div.rim-height
+                            input.sn-chk-radio(type="radio", x-ng-model="court.hheight", name="hheight", id="higher", value="higher", required)
+                            label.sn-chk-radio(for="higher")
+                            div.rm-label
+                              label(for="higher") Higher 
+                    tr.sep: td(colspan="2"): hr
+                    tr 
+                      td: h2.mb0.mt0.tx-grey SURFACE 
+                      td
+                    tr
+                      td: i.icon-surface.tx-grey
+                      td
+                        div.surface-wrapper
+                          div.surface
+                            input.sn-chk-radio(type="radio", x-ng-model="court.surface", name="surface", id="asphlat", value="asphalt", required)
+                            label.sn-chk-radio(for="asphlat")
+                            div.surface-label
+                              label(for="asphlat") Asphalt  
+
+                          div.surface
+                            input.sn-chk-radio(type="radio", x-ng-model="court.surface", name="surface", id="wood", value="wood", required)
+                            label.sn-chk-radio(for="wood")
+                            div.surface-label
+                              label(for="wood") Wood
+
+                          div.surface
+                            input.sn-chk-radio(type="radio", x-ng-model="court.surface", name="surface", id="rubber", value="rubber", required)
+                            label.sn-chk-radio(for="rubber")
+                            div.surface-label
+                              label(for="rubber",class="surface-label") Rubber  
+                    tr.sep: td(colspan="2"): hr
+                    tr 
+                      td: h2.mb0.mt0.tx-grey LINES
+                      td 
+                    tr
+                      td: i.icon-lines.tx-grey
+                      td  
+                        div.surface-wrapper
+                          div.surface
+                            input.sn-chk-radio(type="radio", x-ng-model="court.lines", name="lines", id="visible", value="visible", required)
+                            label.sn-chk-radio(for="visible")
+                            div.surface-label
+                              label(for="visible") Visible  
+
+                          div.surface
+                            input.sn-chk-radio(type="radio", x-ng-model="court.lines", name="lines", id="bad", value="bad", required)
+                            label.sn-chk-radio(for="bad")
+                            div.surface-label
+                              label(for="bad") Bad
+
+                          div.surface
+                            input.sn-chk-radio(type="radio", x-ng-model="court.lines", name="lines", id="none", value="none", required)
+                            label.sn-chk-radio(for="none")
+                            div.surface-label
+                              label(for="none",class="surface-label") None 
+              div.row 
+                      div.col-xs-12 
+                        hr
+                        h1.grey.full-right.dib.mt0 SAVE ALL SETTINGS
+                        input.btn.btn-primary.pull-right.vat(type="Submit", value="SLAM IT!", x-ng-disabled="frmEdit.$pristine || frmEdit.$invalid")
+
+            div.col-xs-5
+              aside.right
+                section#map(ui-map="myMap", style="height:200px", ui-event="{'map-idle':'onMapIdle()', 'map-click': 'addMarker($event, $params)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }", ui-options="mapOptions")
+                div(ng-repeat="marker in myMarkers", ui-map-marker="myMarkers[$index]", ui-event="{'map-click': 'openMarkerInfo(marker)'}")
+                //sdn-map-court-location(location="{{court.loc}}")
+                label(class="lbl-field",for="address"): h2.mb0.mt0 ADDRESS
+                input(type="text", x-ng-model="court.address.street", name="address", id="address", class="sn-textbox", required)
+                label(class="lbl-field",for="city"): h2.mb0.mt0 CITY
+                input(type="text", x-ng-model="court.address.city", name="city", id="city", class="sn-textbox", required)
+                label(class="lbl-field",for="country"): h2.mb0.mt0 COUNTRY
+                input(type="text", x-ng-model="court.address.country", name="country", id="country", class="sn-textbox", required)
+include blocks/footer
+sdn-user-profile-pic-upload-element(cid="{{ court._id }}", uid="{{ activeUser._id }}", whose="court", title="UPLOAD COURT MAIN IMAGE", callback="profilePicChanged", conver-photo="{{ court.mainImage ? court.mainImage.image_large_url : '' }}", uploadstart="profPicUploadStart")

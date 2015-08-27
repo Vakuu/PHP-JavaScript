@@ -1,0 +1,45 @@
+#modal-upload-pro-pic
+
+  .profile-pic-wrapper
+    width: 200px
+    height: 200px
+    text-align: center
+    vertical-align: middle
+    line-height: 200px
+    border: 2px dashed #DDD
+    margin: auto
+    position: relative
+    
+
+  input[type="file"]
+    position: relative
+    left: 50%
+    margin-left: -100px
+    outline: none
+    font-family: font-family-tit
+    
+    // &:after
+    //   content: 'Select File'
+    //   position: absolute
+    //   height: 40px
+    //   width: 200px
+    //   top: -10px
+    //   left: 0
+    //   line-height: 40px
+    //   text-align: center
+    //   margin: auto
+    //   background-color:grey !important
+    //   border:2px solid grey-dark !important
+    //   color:brand-white
+    //   text-transform: uppercase
+    //   font-size: 20px
+    //   cursor: pointer
+    &:hover 
+      &:after
+        background-color:brand-black !important
+        border:2px solid grey !important
+        color:brand-white
+    &:active
+      &:after 
+        background-color:grey !important
+        border:2px solid grey-dark !important

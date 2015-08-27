@@ -1,0 +1,23 @@
+div#modal-media.image-slideshow.modal.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+
+        buttonc.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+        a.pull-right(href="/media", data-dismiss="modal") Media
+        h4.modal-title#myModalLabel
+          img(src="http://placehold.it/25x25")
+          span.title
+      div.modal-body
+        div.slider 
+          div.image-wrapper.tac
+            img(src="http://upload.wikimedia.org/wikipedia/commons/1/10/Basketball_through_hoop.jpg")
+      dvi.modal-footer
+        //- div.hight-five-btn 
+        //-   span.icon-high-five
+        //-   span.mr5.text HIGH FIVE
+        //-   span.badge 10
+        //- span.sep.ml10.mr10 |
+        span.mr10 SHARE
+        a.mr10(x-ng-click="shareFB()"): span.fa.fa-facebook
+        a: span.fa.fa-tumblr

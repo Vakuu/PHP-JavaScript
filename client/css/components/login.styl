@@ -1,0 +1,272 @@
+div.login-form-container
+  left: 50%
+  margin-left: 20px
+  color: white
+  z-index: 9
+  h1 
+    font-size: 64px
+    font-weight: bold
+    color: brand-orange
+    text-align: center
+    
+div.level-wrapper
+  >div
+    display: inline-block
+    margin: 0 34px 0 0
+    label.sn-chk-radio
+      border-color: #FFF
+
+form.login-form
+  div.login-wrapper
+    padding-left:50px
+    input.textbox
+      border: 1px solid brand-black
+    i.fa
+      position: initial
+      margin-top: 6px
+      vertical-align: top
+      font-size: 24px
+      color: brand-orange-dark
+      &:hover 
+        color: brand-black !important
+  input.textbox
+    width:auto
+  input.submit-button
+    width:auto
+
+.signup-loading
+  position: absolute
+  width: 410px
+  height: 100%
+  padding: 20px
+  background: #FFF
+  opacity: 0.6
+  margin-left: -10px
+  display: none
+
+section#activities
+section#play-connected
+  h1 
+    font-size: 3em
+
+section#activities
+section#play-connected
+  padding: 20px 0
+  h3
+  h5 
+    margin-top:0
+  div.text
+    //width: 410px
+    //float: left 
+    margin: auto
+    //margin-top: 34px
+    .video
+      margin-top: 35px
+      text-align: center
+      position: relative
+      .playbutton
+        position: absolute
+        bottom: 10px
+        left: 55px
+        font-size: 39px
+        cursor: pointer
+        &:hover
+          color: rgb(0, 173, 239)
+  div.image 
+    width: 700px
+    float: left
+
+section#slideshow
+  position: relative
+  min-width: 1140px
+  .login-form-container
+    position: absolute
+    top: 0px
+  div.slider
+    box-shadow: 0 2px 2px #DDD
+  div.slide
+    background-position: center center
+    height: 450px
+  ul.slider-buttons
+  .rslides_tabs
+    list-style: none
+    text-align: center
+    margin-top: 10px
+    li 
+      display: inline-block
+      margin: 5px
+      a 
+        height: 15px
+        width: 15px
+        border: 2px solid grey-dark
+        display: block
+        text-indent: 120px
+        overflow: hidden
+      a.active
+       
+        background-color: brand-orange
+    .rslides_here
+      background-color: brand-orange
+  div.social-updates
+    text-align: center
+    position:relative
+    
+    form
+      .ng-invalid.ng-dirty 
+        outline: 2px solid red
+      .form-group
+        border: 2px solid grey-light
+      .form-group
+      div.chk-wrapper
+        display: inline-block
+        width: 49%
+        margin-bottom: 5px
+        > div 
+          display: inline-block
+          label.sn-chk-radio
+            border-color: #FFF
+            margin-left: 10px
+      .dob-wrapper 
+        select
+          background: white
+          border: 2px solid grey-light
+          color: grey-dark
+          padding: 7px
+          width: 32%
+    h5
+      font-size: 21px
+    a 
+      color: grey
+      &:hover
+        color: grey-dark
+    
+section#play-connected
+  position:relative
+  .mapp-icon-wrapper
+    margin-top: 30px
+    a 
+      margin-right: 8px
+  div.photo-illustration
+    height:465px
+    background-color: #FFF
+
+section#activities
+  background-color:grey-lighter
+  div.activity
+    height:300
+    div.tr 
+      &:first-child
+        height: 199px
+    img 
+      max-width:100%
+      margin:auto
+      display:block
+      max-height:349px
+  div.bottom-panel
+    padding:7px
+    background-color:brand-orange
+    height:50px
+    position: relative
+    
+    &:after
+      border-top: 18px solid brand-orange
+      border-right: 24px solid rgba(0,0,0,0)
+      content: ""
+      display: inline-block
+      right: 43px
+      position: absolute
+      bottom: -17px
+    p 
+      color: grey-dark
+  h3 
+    margin-top: 10px
+    text-align: center
+    color: grey-dark
+  .feature
+    width: 24%
+    margin-top: 30px
+    padding-bottom: 60px
+    vertical-align: top
+    display: inline-block
+    text-align: center
+    .icon-wrapper
+      text-align: center
+      font-size: 65px
+      color: grey-lighter
+      .icon-feature-
+        background-image: url('../img/feature-image.png')
+        height: 150px
+        width: 125px
+        
+        display: inline-block
+      .icon-feature--1
+        background-position: -44px -45px
+      .icon-feature--2
+        background-position: -317px -45px
+      .icon-feature--3
+        background-position: -600px -45px
+      .icon-feature--4
+        background-position: -850px -45px
+
+      .active 
+        color: brand-black
+      .icon-badge-1
+        font-size: 25px
+        top: 91px
+        position: absolute
+        color: brand-orange
+    p 
+      color: grey-dark
+    &:hover
+      i
+        color: brand-black !important
+      h3 
+        color: brand-black !important
+      p
+        color: brand-black !important
+      .icon-feature--1
+        background-position: -44px -212px
+      .icon-feature--2
+        background-position: -317px -212px
+      .icon-feature--3
+        background-position: -600px -212px
+      .icon-feature--4
+        background-position: -850px -212px
+
+.login-with-fb
+.login-with-twiiter
+  width: 184px
+  //padding: 5px
+  height: 34px
+  line-height: 34px
+  display: block
+  color: #FFFFFF !important
+  i 
+    text-align: center
+    width: 10px
+    line-height: 34px
+    display: inline-block
+
+.login-with-fb
+  background-color: #4B6EA8
+  border: 1px solid #3F618E
+  .sep
+      color: #3F618E
+  &:hover
+    background-color: #3F618E
+    border: 1px solid #4B6EA8
+    .sep
+      color: #4B6EA8
+.login-with-twiiter
+  background-color: #65A4D9
+  border: 1px solid #4B6EA8
+  .sep
+      color: #4B6EA8
+  &:hover
+    background-color: #4B6EA8
+    border: 1px solid #65A4D9
+    .sep
+      color: #65A4D9
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak
+  display: none !important

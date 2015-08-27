@@ -1,0 +1,45 @@
+div#players
+div#courts
+div#games
+div#teams
+  div.list
+    background-color: grey-lighter
+    padding: 15px
+    margin-top: 3px
+    .media-heading
+      margin-bottom: 10px
+      a 
+        color: inherit
+    table 
+      width: 100%
+      td 
+        text-align: center
+        vertical-align: top
+        button 
+          width: 91px
+      td:last-child
+        border-right: none
+  
+  aside.right
+    margin-top: 20px
+    input.sn-chk-radio:checked ~ label.tx-grey 
+      color: brand-black
+    div.header
+      font-size: font-size-xbig
+      span
+        font-family: font-family-tit
+    div.inline-chk
+      display: inline-block
+      width: 24%
+    div.age-category-wrapper
+      label.sn-chk-radio
+        margin-bottom: 15px
+      label.tx-grey
+        text-align: center
+
+.box_court
+  .sn-chk-radio:checked ~ label.tx-grey
+    color: brand-black 
+  label:hover
+    .icon-marker-base
+      color: brand-black

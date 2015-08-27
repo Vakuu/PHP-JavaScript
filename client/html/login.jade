@@ -1,0 +1,60 @@
+doctype 5
+//html(x-ng-app=pkg.name, data-app-version=pkg.version, x-ng-controller="MainCtrl", x-ng-init="init()")
+html
+  head
+    //block title
+    title Slamdunk Network
+    block stylesheets
+      link(href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300', rel='stylesheet')
+      // usemin2:css:app
+
+    block scripts
+
+  body(x-sn-sticky-header, x-ng-class="handle")
+    div#fb-root
+    header.site-header.ng-scope
+      nav.navbar.navbar-inverse.navbar-static-top(role='navigation')
+        .container
+          .navbar-header
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex7-collapse')
+              span.sr-only Menu
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand(href='#/login')
+          // .collapse.navbar-collapse.navbar-ex7-collapse.navbar-collapse(ng-if="currentUser")
+          .collapse.navbar-collapse.navbar-ex7-collapse.navbar-collapse
+            form.navbar-form.login-form.ng-pristine.ng-invalid.ng-invalid-required(role='login', name='frmLogin', x-ng-submit='login()', autocomplete='off')
+              .login-wrapper
+                input.form-control.textbox.username.ng-pristine.ng-invalid.ng-invalid-required.ng-valid-email(type='email', placeholder='Username', required='required', x-ng-model='visitor.email')
+                input.form-control.textbox.password.ng-pristine.ng-invalid.ng-invalid-required(type='password', placeholder='Password', required='required', x-ng-model='visitor.password')
+                input.form-control.submit-button.btn.btn-primary(type='submit', value='Login', x-ng-disabled='frmLogin.$invalid', disabled='disabled')
+                a.ml20(href='http://sdapi.herokuapp.com/auth/facebook', title='Login with Facebook')
+                  i.fa.fa-facebook
+                a(href='http://sdapi.herokuapp.com/auth/twitter', title='Login with Twitter')
+                  i.fa.fa-twitter  
+      .sub-navbar
+        .container
+          span.site-name
+          p.ng-binding(style='margin: 0 0 10px;color: white;vertical-align: top;margin-top: 7px;margin-left: 36px; display: inline-block;')
+
+    div.alert-wrapper(x-ng-show="!loading")
+      alert(ng-repeat='alert in alerts', type='alert.type', close='closeAlert($index)', x-ng-cloak) {{alert.msg}}
+      div(growl)
+    include templates/login
+    block content
+
+    footer.mt0(x-ng-show="!loading")
+      div.container
+        div.row
+          div.col-xs-3
+            a(href="mailto:hello@slamdunknetwork.com") hello@slamdunknetwork.com
+          div.col-xs-6
+            p Copyright &copy; 2013. Slamdunk Network. All rights reserved.
+          div.col-xs-3
+            a(href="/") www.slamdunknetwork.com
+    
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+    
+    script(src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js")
+    // usemin2:js:login

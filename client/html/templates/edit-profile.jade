@@ -1,0 +1,152 @@
+#privacy-settings(name="privacy-settings")
+  div#edit-profile
+    div.container
+      section.profile
+        div.row
+          div.col-xs-7.left
+            form(name="frmEdit", x-ng-submit="editUserProfile()")
+              div.row
+              div.col-xs-4
+                div.propic(x-ng-class="{'nopropic' : !frmEdit.photo }")
+                  div.img-is-loading(x-ng-show="imgLoading")
+                    img(src="#{pkg.version}/img/loader.gif") 
+                  img(x-ng-src="{{userInfo.photo.image_medium_url}}", style="max-width: 100%;")
+                  div.profile-pic-upload(sdn-user-profile-pic-upload) UPLOAD PIC
+                  span.default202.icon-sdn-default(x-ng-click="editProfilePic()", style="max-width: 100%;", x-ng-hide="userInfo.photo")
+              div.col-xs-8 
+                h1.grey.dib.mt5 SAVE ALL SETTINGS
+                input.btn.btn-primary.ml10.vat(type="Submit", value="SLAM IT!", x-ng-disabled="frmEdit.$pristine")
+              div.row 
+              div.col-xs-12
+                hr  
+                .dib.mr10
+                  h3.grey FIRST NAME
+                  input.form-control(type="text", name="edit.name", x-ng-model="userInfo.fname") 
+                .dib
+                  h3.grey LAST NAME
+                  input.form-control(type="text", name="edit.name", x-ng-model="userInfo.lname") 
+                hr
+                h3.grey DATE OF BIRTH
+                input(type="hidden", name="dob", x-ng-model="userInfo.dob")
+                select.form-control(x-ng-options="y for y in years", required, x-ng-model="user_dob.year", x-ng-change="fillDateData()")
+                  option(value="") --Year--
+                select.form-control(x-ng-options="m.name for m in months", required, x-ng-model="user_dob.month", x-ng-change="fillDateData()")
+                  option(value="") --Month--
+                select.form-control(x-ng-options="d for d in days", required, x-ng-model="user_dob.day", x-ng-change="calculageAge()")
+                  option(value="") --Day--
+                hr
+                h3.grey.dib.mr5 HEIGHT (CM)
+                input(type="text", x-ng-model="userInfo.height", name="height").form-control.mr20
+                h3.grey.dib.mr5 WEIGHT (KG)
+                input(type="text", x-ng-model="userInfo.weight", name="weight").form-control.mr20
+
+              div.col-xs-12 
+                hr  
+                h3.grey GENDER
+                div.dib.mr20
+                  label(for="gender_m") Male
+                  input.sn-chk-radio(type="radio", x-ng-model="userInfo.gender", name="gender", id="gender_m", value="m")
+                  label.sn-chk-radio(for="gender_m")
+                div.dib
+                  label(for="gender_f") Female
+                  input.sn-chk-radio(type="radio", x-ng-model="userInfo.gender", name="gender", id="gender_f", value="f")
+                  label.sn-chk-radio(for="gender_f")
+              div.col-xs-12 
+                hr
+                div.address-wrapper 
+                  div.dib.mr10
+                    h3.grey COUNTRY
+                    select.db.mb10.bgligher.sdn-select.form-control(x-ng-name="country" ,x-ng-change="countryChange()", x-ng-model="userInfo.address.country", x-ng-options="i for i in countries")
+                    //- select.form-control(x-ng-model="userInfo.address.country", name="country")
+                    //-   option(value="") --Country--
+                    //-   option(value="Denmark") Denmark
+                    //-   option(value="United States") United States
+                  div.dib.mr10
+                    h3.grey STATE
+                    input.form-control(type="text", placeholder="", x-ng-model="userInfo.address.state")
+                  div.dib.mr10
+                    h3.grey CITY
+                    input.form-control(type="text", placeholder="", x-ng-model="userInfo.address.city")
+                  div.dib.mr10
+                    h3.grey STREET
+                    input.form-control(type="text", placeholder="", x-ng-model="userInfo.address.street")
+                  div.dib
+                    h3.grey ZIP
+                    input.form-control(type="text", placeholder="", x-ng-model="userInfo.address.zip")
+
+              div.col-xs-12 
+                hr  
+                h3.grey POSITION
+                div.dib.mr20
+                  label(for="Guard") Guard
+                  input.sn-chk-radio(type="radio", x-ng-model="userInfo.position", name="position", id="Guard", value="Guard")
+                  label.sn-chk-radio(for="Guard")
+                div.dib.mr20
+                  label(for="Shooting_Guard") Shooting Guard
+                  input.sn-chk-radio(type="radio", x-ng-model="userInfo.position", name="position", id="Shooting_Guard", value="Shooting Guard")
+                  label.sn-chk-radio(for="Power_Forward")
+                div.dib.mr20
+                  label(for="Forward") Forward
+                  input.sn-chk-radio(type="radio", x-ng-model="userInfo.position", name="position", id="Forward", value="Forward")
+                  label.sn-chk-radio(for="Forward")    
+
+                div.dib.mr20
+                  label(for="Power_Forward") Power Forward
+                  input.sn-chk-radio(type="radio", x-ng-model="userInfo.position", name="position", id="Power_Forward", value="Power Forward")
+                  label.sn-chk-radio(for="Power_Forward")
+                div.dib.mr20
+                  label(for="Center") Center
+                  input.sn-chk-radio(type="radio", x-ng-model="userInfo.position", name="position", id="Center", value="Center")
+                  label.sn-chk-radio(for="Center")
+
+              div.col-xs-12 
+                hr  
+                h3.grey LEVEL
+                div.dib.mr20
+                  label(for="beginner") Beginner
+                  input.sn-chk-radio(type="radio", x-ng-model="userInfo.level", name="level", id="beginner", value="beginner")
+                  label.sn-chk-radio(for="beginner")
+                div.dib.mr20
+                  label(for="social") Social
+                  input.sn-chk-radio(type="radio", x-ng-model="userInfo.level", name="level", id="social", value="social")
+                  label.sn-chk-radio(for="social")
+                div.dib.mr20
+                  label(for="competitive") Competitive
+                  input.sn-chk-radio(type="radio", x-ng-model="userInfo.level", name="level", id="competitive", value="competitive")
+                  label.sn-chk-radio(for="competitive")
+              div.col-xs-12 
+                hr
+                h1.grey.full-right.dib.mt0 SAVE ALL SETTINGS
+                input.btn.btn-primary.pull-right.vat(type="Submit", value="SLAM IT!", x-ng-disabled="frmEdit.$pristine")
+
+          div.col-xs-5.hidden
+            aside.right
+              h1.grey.mt0 PRIVACY SETTINGS
+              h3 Display player information for:
+              div
+                input.sn-chk-radio(type="radio", name="edit.displayInfo", id="displayInfo", value="Everyone")
+                label.sn-chk-radio(for="edit.displayInfo")
+                label.tx-grey(for="displayInfo") Everyone
+              div
+                input.sn-chk-radio(type="radio", name="edit.displayInfo", id="sdn_friends")
+                label.sn-chk-radio(for="sdn_friends")
+                label.tx-grey(for="sdn_friends") Only SDN Friends
+              div
+                input.sn-chk-radio(type="radio", name="edit.displayInfo", id="no-one")
+                label.sn-chk-radio(for="no-one")
+                label.tx-grey(for="no-one") No one
+              h3 Other privacy settings:
+              div
+                input.sn-chk-radio(type="radio", name="edit.oc1", id="oc1")
+                label.sn-chk-radio(for="oc1")
+                label.tx-grey(for="oc1") Other Choises
+              div
+                input.sn-chk-radio(type="radio", name="edit.oc1", id="oc2")
+                label.sn-chk-radio(for="oc2")
+                label.tx-grey(for="oc2") Other Choises
+              div
+                input.sn-chk-radio(type="radio", name="edit.oc1", id="oc3")
+                label.sn-chk-radio(for="oc3")
+                label.tx-grey(for="oc3") Other Choises
+include blocks/footer
+sdn-user-profile-pic-upload-element(whose="user", uid="{{userInfo._id}}", uploadstart="imageUploadStart", callback="callback", conver-photo="{{ user.mainImage ? user.mainImage.image_large_url : '' }}")

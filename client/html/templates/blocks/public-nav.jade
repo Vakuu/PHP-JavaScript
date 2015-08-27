@@ -1,0 +1,25 @@
+header.site-header
+  nav.navbar.navbar-inverse.navbar-static-top(role="navigation")
+    .container
+      //- Brand and toggle get grouped for better mobile display
+      .navbar-header(ng-cloak)
+        button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex7-collapse')
+          span.sr-only Menu
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(href='#/login')
+      //- Collect the nav links, forms, and other content for toggling
+      //.collapse.navbar-collapse.navbar-ex7-collapse.navbar-collapse(ng-if="currentUser")
+      .collapse.navbar-collapse.navbar-ex7-collapse.navbar-collapse
+        form.navbar-form.login-form(role="login", name="frmLogin", x-ng-submit="login()", autocomplete="off")
+          div.login-wrapper
+            input.form-control.textbox.username(type="email", placeholder="Username", required="required", x-ng-model="visitor.email")
+            input.form-control.textbox.password(type="password", placeholder="Password", required="required", x-ng-model="visitor.password")
+            input.form-control.submit-button.btn.btn-primary(type="submit", value="Login", x-ng-disabled="frmLogin.$invalid")
+            a.ml20(href="http://sdapi.herokuapp.com/auth/facebook", title="Login with Facebook"): i.fa.fa-facebook
+            a(href="http://sdapi.herokuapp.com/auth/twitter", title="Login with Twitter"): i.fa.fa-twitter 
+  .sub-navbar
+    .container
+      span.site-name
+      p(style="margin: 0 0 10px;color: white;vertical-align: top;margin-top: 7px;margin-left: 36px; display: inline-block;") {{error}}

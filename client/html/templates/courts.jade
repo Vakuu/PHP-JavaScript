@@ -1,0 +1,191 @@
+div#courts
+  div.container
+    div.row 
+      div.col-xs-7
+        h5.grey Total Results {{courts.length}}
+        pagination.pagination-sm(total-items='bigTotalItems', page='bigCurrentPage', max-size='maxSize', boundary-links='true', rotate='false', num-pages='numPages', on-select-page="pageChanged()")
+
+        div.list(x-ng-repeat="c in courts")
+          div.media 
+            a.pull-left(x-ng-href="#/court-profile/{{c._id}}")
+              div.pro-pic-wrapper(style="background-image: url({{c.mainImage.image_large_url}}); background-size: cover; height: 64px; width: 64px;", x-ng-show="c.mainImage", title="{{c.name}}")
+              i.bg-black.default64.icon-sdn-default(x-ng-hide="c.mainImage")
+            div.media-body
+              h2.media-heading
+                a(x-ng-href="#/court-profile/{{c._id}}") {{c.name}}
+                small(x-ng-show="c.address.city")  CITY: 
+                  span.tx-black {{c.address.city}}
+              div.stars.hidden
+                div(x-ng-repeat="n in [1,2,3,4,5]")
+                  div(x-ng-if="$index < c.rating")
+                    span.icon-star
+                  div(x-ng-if="$index >= c.rating ")
+                    span.icon-star.tx-grey
+              table
+                thead
+                  tr
+                    td
+                      h5.mt0.grey COURT TYPE
+                    td 
+                      h5.mt0.grey HOOPS 
+                    td 
+                      h5.mt0.grey RIM HEIGHT
+                    td: h5.mt0.grey SURFACE
+                    td: h5.mt0.grey LINES
+                    //- td(rowspan="2")
+                    //-   h5.mt0.grey ACTIVE FRIENDS
+                    //-   div.frnds-playing(x-ng-show="c.active_friends")
+                    //-     a(href="#")
+                    //-       img(src="http://placehold.it/24x24") 
+                    //-     a(href="#")
+                    //-       img(src="http://placehold.it/24x24") 
+                    //-     a(href="#")
+                    //-       img(src="http://placehold.it/24x24") 
+                    //- td(rowspan="2")
+                    //-   div.hight-five-btn(x-ng-show="c.high_fived") 
+                    //-     span.icon-high-five
+                    //-     span.mr5.text HIGH FIVE
+                    //-     span.badge 10
+                    //-   div.challenge-btn.mr5
+                    //-     a.gray-link(x-ng-href="/court-profile/{{c._id}}") 
+                    //-       span.icon-hoopmap-menu
+                    //-       span.text GO TO MAP
+                  tr
+                    td
+                      i.icon(x-ng-class="c.ctype == 'indoor' ? 'indoor_court' : 'street_court'")
+                      div.clearfix
+                      label {{ c.ctype == 'indoor' ? 'Indoor' : 'Street' }}
+                    td 
+                      h5.mt0 {{c.num_hoops}}
+                    td 
+                      h5.mt0 {{c.hheight}}
+                    td 
+                      h5.mt0 {{c.surface ? c.surface : '---'}}
+                    td 
+                      h5.mt0 {{c.lines ? c.lines : '---'}}
+                  
+                     
+
+      div.col-xs-5
+        aside.right.search-controls
+          div.header
+            p Search for 
+              span.tx-orange COURTS 
+          div.controls-wrapper
+            hr
+            div.form-group
+              div.row
+                h3.col-xs-3.control-label.mb0.tx-grey(style="margin-top: 4px") COUNTRY
+                div.col-xs-9
+                  select.bgligher.ml5.sdn-select.form-control(x-ng-change="countryChange()", x-ng-model="filter.country")
+                    option(value="") --Country--
+                    option(value="Denmark") Denmark
+                    option(value="India") India
+                    option(value="United States") United States
+                    option(value="Bulgaria") Bulgaria
+              div.row 
+                div.col-xs-12(x-ng-show="filter.cities.length > 0")
+                  hr
+                  div.city-wrapper
+                    h3.tx-grey.mt0 CITY
+                    div.row
+                      div.col-xs-12
+                        div.city-chk-wrapper(x-ng-repeat="c in filter.cities track by $index")
+                          input.sn-chk-radio(type="radio", x-ng-model="filter.city", value="{{c}}", name="filter_city", id="c_{{c}}", x-ng-change="CourtFilter()")
+                          label.sn-chk-radio(for="c_{{c}}")
+                          label(for="c_{{c}}") {{c}}
+
+                div.col-xs-12
+                  hr
+                  div.courttype-wrapper
+                    h3.tx-grey.mt0 COURT TYPE
+                    div.vat.dib.mr30
+                      label.tx-grey.box_court.indoor_court(for="indoor_court")
+                        span.badge.bg-orange {{total_indoor}}
+                        input.sn-chk-radio(type="radio", name="ctype", id="indoor_court", x-ng-model="filter.ctype", x-ng-change="CourtFilter()", value="indoor")
+                        label.sn-chk-radio(for="indoor_court")
+                        label.sn-chk-court.tx-grey.pr(for="indoor_court") 
+                          span.icon-marker-base
+                            span.icon-ball-indoor
+                          span.db Indoor
+                    div.vat.dib.mr30
+                      label.tx-grey.box_court.street_court(for="street_court")
+                        span.badge.bg-orange {{total_street}}
+                        input.sn-chk-radio(type="radio", name="ctype", id="street_court", x-ng-model="filter.ctype", x-ng-change="CourtFilter()", value="street")
+                        label.sn-chk-radio(for="street_court")
+                        label.sn-chk-court.tx-grey.pr(for="street_court") 
+                          span.icon-marker-base
+                            span.icon-ball
+                          span.db Street
+                    div.vat.dib.mr30
+                      label.tx-grey.box_court.active-street(for="active_court")
+                        span.badge.bg-orange {{total_active}}
+                        input.sn-chk-radio(type="radio", name="ctype", id="active_court", x-ng-model="filter.ctype", x-ng-change="CourtFilter()", value="active")
+                        label.sn-chk-radio(for="active_court")
+                        label.sn-chk-court.tx-grey.pr(for="active_court") 
+                          span.icon-marker-base
+                            span.icon-ball
+                          span.db Active <br/> Court
+                    
+                  hr
+                  div.number-of-hoop-wrapper  
+                    h3.tx-grey.mt0 NUMBER OF HOOPS
+                    div.dib.mr5
+                      label.tx-grey.db.tac(for="hoop_1") 1
+                      input.sn-chk-radio(type="radio", name="numhoops", id="hoop_1", value="1", x-ng-model="filter.numhoops", x-ng-change="CourtFilter()")
+                      label.sn-chk-radio(for="hoop_1")
+                    div.dib.mr5
+                      label.tx-grey.db.tac(for="hoop_2") 2
+                      input.sn-chk-radio(type="radio", name="numhoops", id="hoop_2", value="2", x-ng-model="filter.numhoops", x-ng-change="CourtFilter()")
+                      label.sn-chk-radio(for="hoop_2")
+                    div.dib.mr5
+                      label.tx-grey.db.tac(for="hoop_3") 3
+                      input.sn-chk-radio(type="radio", name="numhoops", id="hoop_3", value="3", x-ng-model="filter.numhoops", x-ng-change="CourtFilter()")
+                      label.sn-chk-radio(for="hoop_3")
+                    div.dib.mr5
+                      label.tx-grey.db.tac(for="hoop_4") 4
+                      input.sn-chk-radio(type="radio", name="numhoops", id="hoop_4", value="4", x-ng-model="filter.numhoops", x-ng-change="CourtFilter()")
+                      label.sn-chk-radio(for="hoop_4")
+                    div.dib.mr5
+                      label.tx-grey.db.tac(for="hoop_5") 5
+                      input.sn-chk-radio(type="radio", name="numhoops", id="hoop_5", value="5", x-ng-model="filter.numhoops", x-ng-change="CourtFilter()")
+                      label.sn-chk-radio(for="hoop_5")
+                    div.dib.mr5
+                      label.tx-grey.db.tac(for="hoop_6") 6
+                      input.sn-chk-radio(type="radio", name="numhoops", id="hoop_6", value="6", x-ng-model="filter.numhoops", x-ng-change="CourtFilter()")
+                      label.sn-chk-radio(for="hoop_6")
+                    div.dib.mr5
+                      label.tx-grey.db.tac(for="hoop_7") 7
+                      input.sn-chk-radio(type="radio", name="numhoops", id="hoop_7", value="7", x-ng-model="filter.numhoops", x-ng-change="CourtFilter()")
+                      label.sn-chk-radio(for="hoop_7")
+                    div.dib.mr5
+                      label.tx-grey.db.tac(for="hoop_8") 8
+                      input.sn-chk-radio(type="radio", name="numhoops", id="hoop_8", value="8", x-ng-model="filter.numhoops", x-ng-change="CourtFilter()")
+                      label.sn-chk-radio(for="hoop_8")
+                    div.dib.mr5
+                      label.tx-grey.db.tac(for="hoop_9") 9
+                      input.sn-chk-radio(type="radio", name="numhoops", id="hoop_9", value="9", x-ng-model="filter.numhoops", x-ng-change="CourtFilter()")
+                      label.sn-chk-radio(for="hoop_9")
+                    div.dib.mr5
+                      label.tx-grey.db.tac(for="hoop_10") 10
+                      input.sn-chk-radio(type="radio", name="numhoops", id="hoop_10", value="10", x-ng-model="filter.numhoops", x-ng-change="CourtFilter()")
+                      label.sn-chk-radio(for="hoop_10")
+                  hr
+                  div.rim-height-wrapper
+                    h3.tx-grey.mt0 RIM HEIGHT
+                    div.dib.mr20.tac
+                      label.tx-grey.db.tac(for="standard") Standard <br/> 0,00m
+                      input.sn-chk-radio(type="radio", name="hheight", value="standard", x-ng-model="filter.hheight", id="standard", x-ng-change="CourtFilter()")
+                      label.sn-chk-radio(for="standard")
+                    div.dib.mr20.tac
+                      label.tx-grey.db.tac(for="lower") Lower <br/> 0,00m
+                      input.sn-chk-radio(type="radio", name="hheight", value="lower", x-ng-model="filter.hheight", id="lower", x-ng-change="CourtFilter()")
+                      label.sn-chk-radio(for="lower")
+                    div.dib.mr20.tac
+                      label.tx-grey.db.tac(for="higher") Higher <br/> 0,00m
+                      input.sn-chk-radio(type="radio", name="hheight", value="higher", x-ng-model="filter.hheight", id="higher", x-ng-change="CourtFilter()")
+                      label.sn-chk-radio(for="higher") 
+                  hr
+
+include blocks/footer                  
+

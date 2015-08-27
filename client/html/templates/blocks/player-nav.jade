@@ -1,0 +1,74 @@
+header.site-header
+  nav.navbar.navbar-inverse.navbar-static-top(role="navigation")
+    .container
+      //- Brand and toggle get grouped for better mobile display
+      .navbar-header(ng-cloak)
+        button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex7-collapse', ng-if="currentUser")
+          span.sr-only Menu
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(href='/')
+      //- Collect the nav links, forms, and other content for toggling
+      //-.collapse.navbar-collapse.navbar-ex7-collapse.navbar-collapse(ng-if="currentUser")
+      .collapse.navbar-collapse.navbar-ex7-collapse.navbar-collapse
+        ul.nav.navbar-nav.pull-left.primary-menu
+          li
+            a(href='#/network', title="Network") 
+              | Network
+              i.icon-network
+          li
+            a(href='#/hoopmap', title="Hoopmap") 
+              | Hoop Map
+              i.icon-hoopmap
+          li.li-profile.dropdown
+            a(href='#/my-profile', title="Profile") 
+              | Profile
+              img(x-ng-src="{{activeUser.photo.image_small_url}}") 
+              //i(x-ng-hide="{{activeUser.photo}}").default29.icon-sdn-default.bgligher
+            
+          li.li-profile.dropdown(x-ng-show="{{ notification.length > 0 }}")
+            //a.notification-item(data-toggle="dropdown")
+            a.notification-item()
+              span.icon-notification
+            i(data-toggle="dropdown", data-target="#") {{notification.length}}
+            div.dropdown-menu.noti-dropdown-menu
+              .dropdown-title
+                | Notifications Menu
+              ul.sn-scroll(role="menu",aria-labelledby="dLabel")
+                li(x-ng-repeat="n in notification")
+                  .noti-wrapper
+                    img.noti-img(src="#{pkg.version}/img/profile_pics/profile.jpeg")
+                    .noti-detail
+                      | your facebook friend <a href='#'>Martin Hermansen</a> is on SDN.
+
+              .dropdown-footer
+                a(href='#') All notifications
+        ul.nav.navbar-nav.navbar-right.navbar-settings
+          li.li-settings
+            a.settings(data-toggle="dropdown",data-target="#")
+            ul.dropdown-menu
+              li: a(href='#/edit-profile') Edit Profile
+              li: a(href='#/login') Logout
+              li 
+                a(href='https://www.facebook.com/slamdunknetwork', target="_blank") 
+                  | HELP ? Goto 
+                  span.orange-color SDN Support Team
+
+        form.navbar-form.navbar-right(role="search")
+          div.form-group.form-search-group
+            i.search-icon
+            searchuser
+        
+  .sub-navbar
+    .container
+      span.site-name
+      ul.sub-navbar-list.list-inline.pull-right(select-active-link)
+        li
+          a(href='#/players', title='Players') Players
+        li
+          a(href='#/teams', title='Teams') Teams
+        li
+          a(href='#/courts', title='Courts') Courts
+        li
+          a(href='#/games', title='Games') Games

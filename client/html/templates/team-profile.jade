@@ -1,0 +1,236 @@
+div#team-profile.team-profile
+  div.container
+    section.profile
+      div.row
+        div.col-xs-7.left
+          div.row
+            div.col-xs-6
+              div.heading
+                h1.player-name MONSTARTS
+                h4 Home Court: 
+                  span The Cage (NY)
+            div.col-xs-6
+              div.pt60
+                div.pull-right
+                  div.challenge-btn.mr20
+                    span.icon-challenge
+                    span.text CHALLENGE
+                  div.hight-five-btn 
+                    span.icon-high-five
+                    span.mr5.text HIGH FIVE
+                    span.badge 10
+
+                  //span.icon-high-five.orange-color
+                  //button.btn.btn-default HIGH FIVE
+          div.row 
+            div.col-xs-12 
+              hr
+          div.row 
+            div.col-xs-12
+
+              div.row 
+                div.col-xs-4 
+                  span.icon-user.large
+                div.col-xs-8 
+                  div.player-info 
+                    div.info 
+                      h4.grey AGE
+                      h3 28
+                    div.info 
+                      h4.grey SDN GAMES
+                      h3 42
+                    div.info
+                      h4.grey FAIRPLAYER
+                      h3.fairplay
+                        span.icon-level-1
+                        span.icon-level-2
+                        span.icon-level-3.orange-color
+                        span.icon-level-4
+                        span.icon-level-5
+                    div.info.clearfix 
+                      h4.grey GENDER
+                      h3 Male(ish)
+                    div.info 
+                      h4.grey SDN WINS
+                      h3 3
+                    div.clearfix
+                    div.info.clearfix 
+                      h4.grey LEVEL
+                      h3 Social
+                    div.info 
+                      h4.grey TYPE
+                      h3 2vs2
+          //old style    
+          div.row(x-ng-show="false") 
+            div.col-xs-3 
+              h1.mt0 SKILLS
+                small
+                  a  48 
+                  | RATES
+            div.col-xs-5
+              div.rating-info-wrapper
+                div.rating-info 
+                  span.square.orange 
+                  p Friends' ratings
+                div.rating-info
+                  span.square.black  
+                  p My ratings
+            div.col-xs-4 
+              div 
+                button.btn-primary.btn APPROVE
+                button.btn-primary.btn EDIT SKILLS
+          div.row
+            div.col-xs-12
+              hr
+              sdn-team-rating
+          
+          div.row 
+            div.col-xs-12
+             hr
+          div.row 
+            div.col-sm-12
+              h4.grey LATES RESULTS
+                table.tatest-results(cellpadding="10")
+                  tr 
+                    td MONSTARTS
+                      span.greycolor.score 28 
+                    td
+                      span.greycolor VS
+                    td LOONEY SQUARD
+                      span.greycolor.score 30
+                  tr 
+                    td MONSTARTS
+                      span.greycolor.score 28 
+                    td
+                      span.greycolor VS
+                    td LOONEY SQUARD
+                      span.greycolor.score 30
+                  tr 
+                    td MONSTARTS
+                      span.greycolor.score 28 
+                    td
+                      span.greycolor VS
+                    td LOONEY SQUARD
+                      span.greycolor.score 30
+                  tr 
+                    td MONSTARTS
+                      span.greycolor.score 28 
+                    td
+                      span.greycolor VS
+                    td LOONEY SQUARD
+                      span.greycolor.score 30
+                  tr 
+                    td MONSTARTS
+                      span.greycolor.score 28 
+                    td
+                      span.greycolor VS
+                    td LOONEY SQUARD
+                      span.greycolor.score 30
+
+
+        div.col-xs-5
+          aside.right
+            h1 Roster
+              a.pull-right(data-toggle="modal", data-target="#modal-manage-team")
+                small 
+                  span.icon-setting 
+                  | MANAGE TEAM
+            div.roster-wrapper(style="height: 200px; width: 100%; position: relative;")
+              div.player1.player
+                span.badge.orange-bgcolor C
+                span.icon-marker-base
+                  span.icon-user
+              div.player2.player
+                
+                span.icon-marker-base
+                  span.icon-user
+              div.player3.player
+                span.icon-marker-base
+                  span.icon-user
+                    img(src="http://squizzes.s3.amazonaws.com/wp-content/uploads/2012/08/King-Henry-II-bullet.jpg")
+              div.player4.player
+                span.icon-marker-base
+                  span.icon-user
+              div.player5.player
+                
+                span.icon-marker-base
+                  span.icon-user
+            h2.mt10.vat.dib.mr20.grey SUBS
+            div.subusre.dib
+              span.icon-user.small
+              span.icon-user.small
+              span.icon-user.small
+              span.icon-user.small
+              span.icon-user.small
+              span.icon-user.small
+              span.icon-user.small
+            hr
+            sdn-wall(limit="5")
+include blocks/footer
+div#modal-manage-team.modal.alert-modal.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        buttonc.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+        h2.modal-title#myModalLabel 
+          span.icon-setting 
+          | MANAGE TEAM
+      div.modal-body
+        ul.nav.nav-tabs
+          li.active()
+            a(data-target="#team", data-toggle="tab") TEAM
+          li()
+            a(data-target="#invite-player", data-toggle="tab") INVITE PLAYER
+        div.tab-content
+          div#team.tab-pane.sn-scroll.active(sdn-scroll-bar)
+            div.tp-wrapper
+              div.media
+                a.pull-left
+                  img(src="http://placehold.it/50x50")
+                div.media-body
+                  h4.media-heading Team name
+                  a.pull-right.tx-grey KICK OUT
+              div.media
+                a.pull-left
+                  img(src="http://placehold.it/50x50")
+                div.media-body
+                  h4.media-heading Team name
+                  a.pull-right.tx-grey KICK OUT
+              div.media
+                a.pull-left
+                  img(src="http://placehold.it/50x50")
+                div.media-body
+                  h4.media-heading Team name
+                  a.pull-right.tx-grey KICK OUT
+              div.media
+                a.pull-left
+                  img(src="http://placehold.it/50x50")
+                div.media-body
+                  h4.media-heading Team name
+                  a.pull-right.tx-grey KICK OUT
+          div#invite-player.tab-pane.sn-scroll(sdn-scroll-bar)
+            div.tp-wrapper
+              div.media
+                a.pull-left
+                  img(src="http://placehold.it/50x50")
+                div.media-body
+                  h4.media-heading Player name
+                  button.btn.btn-primary.pull-right INVITE
+              div.media
+                a.pull-left
+                  img(src="http://placehold.it/50x50")
+                div.media-body
+                  h4.media-heading Player name
+                  button.btn.btn-primary.pull-right INVITE
+              div.media
+                a.pull-left
+                  img(src="http://placehold.it/50x50")
+                div.media-body
+                  h4.media-heading Player name
+                  button.btn.btn-primary.pull-right INVITE
+              div.media
+                a.pull-left
+                  img(src="http://placehold.it/50x50")
+                div.media-body
+                  h4.media-heading Player name
+                  button.btn.btn-primary.pull-right INVITE

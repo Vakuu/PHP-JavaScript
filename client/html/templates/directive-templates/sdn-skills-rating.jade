@@ -1,0 +1,200 @@
+div(x-ng-switch="editSkills")
+
+  
+
+  div.skills.row(x-ng-switch-when="true")
+    
+    div.col-xs-6
+      div.header-wrapper
+        h1.grey.mb0 OFFENCE SKILLS
+        small LEVEL 
+          a.orange-link(href="#")  SOCIAL
+        h1.mt0.orange-color.total 37
+        small.tx-grey some text
+      div.skill-wrapper
+        h4.grey.mb0 3 Points
+        div.sdn-progressbar
+          div.sdn-ratting.friends(style="width: 50%")
+          div.sdn-ratting.my(style="width: 40%; z-index: 1;")
+        h4.grey.skill-total 3
+      div.skill-wrapper
+        h4.grey.mb0 Mid-range shooting
+        div.sdn-progressbar
+          div.sdn-ratting.friends(style="width: 58%; z-index: 1;")
+          div.sdn-ratting.my(style="width: 60%;")
+        h4.grey.skill-total 3
+      div.skill-wrapper
+        h4.grey.mb0 Lay-ups
+        div.sdn-progressbar
+          div.sdn-ratting.friends(style="width: 90%;")
+          div.sdn-ratting.my(style="width: 70%; z-index: 1;")
+        h4.grey.skill-total 3
+      div.skill-wrapper
+        h4.grey.mb0 Ball-handling
+        div.sdn-progressbar
+          div.sdn-ratting.friends(style="width: 40%")
+          div.sdn-ratting.my(style="width: 30%; z-index: 1;")
+        h4.grey.skill-total 3
+      div.skill-wrapper
+        h4.grey.mb0 Assists
+        div.sdn-progressbar
+          div.sdn-ratting.friends(style="width: 100%;")
+          div.sdn-ratting.my(style="width: 90%; z-index: 1;")
+        h4.grey.skill-total 3
+    div.col-xs-6
+      div.header-wrapper
+        h1.grey.mb0 DEFFENSIVE SKILLS
+        small LEVEL 
+          a.orange-link(href="#")  SOCIAL
+        h1.mt0.orange-color.total 37
+        small.tx-grey some text
+      div.skill-wrapper
+        h4.grey.mb0 3 Points
+        div.sdn-progressbar
+          div.sdn-ratting.friends(style="width: 100%;")
+          div.sdn-ratting.my(style="width: 90%; z-index: 1;")
+        h4.grey.skill-total 3
+      div.skill-wrapper
+        h4.grey.mb0 Mid-range shooting
+        div.sdn-progressbar
+          div.sdn-ratting.friends(style="width: 100%;")
+          div.sdn-ratting.my(style="width: 90%; z-index: 1;")
+        h4.grey.skill-total 3
+      div.skill-wrapper
+        h4.grey.mb0 Lay-ups
+        div.sdn-progressbar
+          div.sdn-ratting.friends(style="width: 100%;")
+          div.sdn-ratting.my(style="width: 90%; z-index: 1;")
+        h4.grey.skill-total 3
+      div.skill-wrapper
+        h4.grey.mb0 Ball-handling
+        div.sdn-progressbar
+          div.sdn-ratting.friends(style="width: 100%;")
+          div.sdn-ratting.my(style="width: 90%; z-index: 1;")
+        h4.grey.skill-total 3
+      div.skill-wrapper
+        h4.grey.mb0 Assists
+        div.sdn-progressbar
+          div.sdn-ratting.friends(style="width: 100%;")
+          div.sdn-ratting.my(style="width: 90%; z-index: 1;")
+        h4.grey.skill-total 3
+
+  div.skills.row(x-ng-switch-when="false")
+    
+    ul.sdn-dropdown
+      //li: a(href="#", x-ng-click="changeEditModeMy()", x-ng-disabled="true") Rate Skill 
+      li: a Rate Skill 
+      li: a Approve Rate  
+    
+    div.col-xs-6
+
+      div.header-wrapper
+        h1.grey.mb0 OFFENCE SKILLS
+        small LEVEL 
+          a.orange-link(href="#")  SOCIAL
+        h1.mt0.orange-color.total {{ skill.offence.three_point + skill.offence.mid_range + skill.offence.lay_ups + skill.offence.ball_handling + skill.offence.assits | doubleNumber }}
+        small.tx-grey some text
+      
+      div.skill-wrapper
+        h4.grey.mb0 3 Points
+        div.sdn-progressbar(x-ng-class="'rate_' + skill.offence.three_point", x-ng-click="editSkill('offence', 'three_point', $event)")
+          div.sdn-ratting.friends
+          div.sdn-ratting.my
+        h4.grey.skill-total {{ skill.offence.three_point | doubleNumber }}
+      
+      div.skill-wrapper
+        h4.grey.mb0 Mid-range shooting
+        div.sdn-progressbar(x-ng-class="'rate_' + skill.offence.mid_range", x-ng-click="editSkill('offence', 'mid_range', $event)")
+          div.sdn-ratting.friends
+          div.sdn-ratting.my
+        h4.grey.skill-total {{ skill.offence.mid_range | doubleNumber }}
+      
+      div.skill-wrapper
+        h4.grey.mb0 Lay-ups
+        div.sdn-progressbar(x-ng-class="'rate_' + skill.offence.lay_ups", x-ng-click="editSkill('offence', 'lay_ups', $event)")
+          div.sdn-ratting.friends
+          div.sdn-ratting.my
+        h4.grey.skill-total {{ skill.offence.lay_ups | doubleNumber }}
+      
+      div.skill-wrapper
+        h4.grey.mb0 Ball-handling
+        div.sdn-progressbar(x-ng-class="'rate_' + skill.offence.ball_handling", x-ng-click="editSkill('offence', 'ball_handling', $event)")
+          div.sdn-ratting.friends
+          div.sdn-ratting.my
+        h4.grey.skill-total {{ skill.offence.ball_handling | doubleNumber }}
+      
+      div.skill-wrapper
+        h4.grey.mb0 Assists
+        div.sdn-progressbar(x-ng-class="'rate_' + skill.offence.assits", x-ng-click="editSkill('offence', 'assits', $event)")
+          div.sdn-ratting.friends
+          div.sdn-ratting.my
+        h4.grey.skill-total {{ skill.offence.assits | doubleNumber }}
+    
+    div.col-xs-6
+
+      div.header-wrapper
+        h1.grey.mb0 DEFFENSIVE SKILLS
+        small LEVEL 
+          a.orange-link(href="#")  SOCIAL
+        h1.mt0.orange-color.total {{ skill.deffensive.three_point + skill.deffensive.mid_range + skill.deffensive.lay_ups + skill.deffensive.ball_handling + skill.deffensive.assits  | doubleNumber }}
+        small.tx-grey some text
+      
+      div.skill-wrapper
+        h4.grey.mb0 3 Points
+        div.sdn-progressbar(x-ng-class="'rate_' + skill.deffensive.three_point", x-ng-click="editSkill('deffensive', 'three_point', $event)")
+          div.sdn-ratting.friends
+          div.sdn-ratting.my
+        h4.grey.skill-total {{ skill.deffensive.three_point | doubleNumber }}
+      
+      div.skill-wrapper
+        h4.grey.mb0 Mid-range shooting
+        div.sdn-progressbar(x-ng-class="'rate_' + skill.deffensive.mid_range", x-ng-click="editSkill('deffensive', 'mid_range', $event)")
+          div.sdn-ratting.friends
+          div.sdn-ratting.my
+        h4.grey.skill-total {{ skill.deffensive.mid_range | doubleNumber }}
+      
+      div.skill-wrapper
+        h4.grey.mb0 Lay-ups
+        div.sdn-progressbar(x-ng-class="'rate_' + skill.deffensive.lay_ups", x-ng-click="editSkill('deffensive', 'lay_ups', $event)")
+          div.sdn-ratting.friends
+          div.sdn-ratting.my
+        h4.grey.skill-total {{ skill.deffensive.lay_ups | doubleNumber }}
+      
+      div.skill-wrapper
+        h4.grey.mb0 Ball-handling
+        div.sdn-progressbar(x-ng-class="'rate_' + skill.deffensive.ball_handling", x-ng-click="editSkill('deffensive', 'ball_handling', $event)")
+          div.sdn-ratting.friends
+          div.sdn-ratting.my
+        h4.grey.skill-total {{ skill.deffensive.ball_handling | doubleNumber }}
+      
+      div.skill-wrapper
+        h4.grey.mb0 Assists
+        div.sdn-progressbar(x-ng-class="'rate_' + skill.deffensive.assits", x-ng-click="editSkill('deffensive', 'assits', $event)")
+          div.sdn-ratting.friends
+          div.sdn-ratting.my
+        h4.grey.skill-total {{ skill.deffensive.assits | doubleNumber }}
+  
+  div.skills.row.report-pan 
+
+    div.col-xs-12 
+      h4.dib.tx-orange-dark 0000
+        small Rates 
+      h4.dib.tx-orange 0000
+        small Approvals
+
+      div.pull-right(x-ng-switch="ctrlName")
+        div(x-ng-switch-when="PlayerProfileCtrl")
+          div.dib(x-ng-show="!editMode")
+            div.dib 
+              button.btn.btn-primary(x-ng-click="changeEditModeFriend()", x-ng-disabled="true") RATE SKILLS
+            div.dib
+              button.btn.btn-primary APPROVE SKILLS
+          div.dib(x-ng-show="editMode")
+            button.btn.btn-default(x-ng-click="submitRatting()") SLAM IT!
+        div(x-ng-switch-when="MyProfileCtrl")
+          div.dib(x-ng-show="!editMode")
+            div.dib 
+              button.btn.btn-primary(x-ng-click="changeEditModeMy()", x-ng-disabled="true") RATE SKILLS
+            h4.grey.dib IN 19 GAMES
+          div.dib(x-ng-show="editMode")
+            button.btn.btn-default(x-ng-click="submitRatting()") SLAM IT!
